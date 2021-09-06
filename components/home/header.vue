@@ -1,8 +1,8 @@
 <template>
 	<header class="v-header clearfix">
-		<div id="index-header" :class="headFixed == true ? 'fixedTop' : ''">
+		<div id="index-header" class="fixedTop">
 			<div class="index-header-box">
-				<div class="i-h-top">
+				<!-- <div class="i-h-top">
 					<div class="h-t-contact">
 						<nuxt-link to="/service/contact">联系方式</nuxt-link><nuxt-link to="/join">招商加盟</nuxt-link><span>欢迎您进入<h1>卫诗理</h1>官网！</span>
 					</div>
@@ -26,33 +26,33 @@
 						</div>
 					</div>
 					
-				</div>
+				</div> -->
 				<div class="i-h-nav">
 					<ul class="h-nav-list">
 						<li><nuxt-link to="/">首页</nuxt-link></li>
 						<li>
-							<nuxt-link to="/brand">品牌故事</nuxt-link>
-							<ul class="h-nav-list-child">
+							<nuxt-link to="/brand">产品和服务</nuxt-link>
+							<!-- <ul class="h-nav-list-child">
 								<li><a href="/brand#brand-story">品牌故事</a></li>
 								<li><a href="/brand#brand-background">品牌背景</a></li>
 								<li><a href="/brand#brand-development">发展历程</a></li>
 								<li><a href="/brand#brand-concept">品牌理念</a></li>
 								<li><a href="/brand#brand-strength">品牌荣誉</a></li>
-							</ul>
+							</ul> -->
 						</li>
 						<li>
-							<nuxt-link to="/leader">创始人说</nuxt-link>
+							<nuxt-link to="/leader">智能硬件</nuxt-link>
 						</li>
 						<li>
-							<nuxt-link to="/experice">体验馆</nuxt-link>
-							<ul class="h-nav-list-child">
+							<nuxt-link to="/experice">关于爱柚</nuxt-link>
+							<!-- <ul class="h-nav-list-child">
 								<li><nuxt-link to="/experice/bt">包头</nuxt-link></li>
 								<li><nuxt-link to="/experice/cd">成都</nuxt-link></li>
 								<li><nuxt-link to="/experice/nj">南京</nuxt-link></li>
 								<li><nuxt-link to="/experice/dg">东莞</nuxt-link></li>
-							</ul>
+							</ul> -->
 						</li>
-						<li>
+						<!-- <li>
 							<nuxt-link target="_blank" to="/prod">产品介绍</nuxt-link>
 							<ul class="h-nav-list-child h-nav-list-childProd">
 								<li>
@@ -97,7 +97,7 @@
 									<nuxt-link :to="{name: 'job-classId',params: {classId: item.jobClassId}}">{{item.jobClassName}}</nuxt-link>
 								</li>
 							</ul>
-						</li>
+						</li> -->
 					</ul>		
 				</div>
 			</div>
@@ -148,14 +148,14 @@
 <style scoped>
 	#index-header {
 	    width:  100%;
-	    height: 158px;
+	    /* height: 158px; */
 	    background:  #fff;
 	    z-index: 666;
 	}
 
 	.fixedTop{
 	    position:  fixed;
-	    top: -100px;
+	    /* top: -100px; */
 	    left: 0;
 	}
 

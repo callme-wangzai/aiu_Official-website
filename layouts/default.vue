@@ -10,7 +10,7 @@
 
 <style>
   .marginTop{
-    margin-top: 170px;
+    /* margin-top: 170px; */
   }
 </style>
 
@@ -60,3 +60,8 @@
     }
   }
 </script>
+<style scoped>
+.content-container .margin-top{
+  margin-top:77px;
+}
+</style>
