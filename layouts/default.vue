@@ -53,6 +53,18 @@
         } else {
           this.headFixed = false;
         }
+        let percent = scrollTop/76 >= 1 ? 1 : scrollTop/76
+        document.getElementById('index-header').style.backgroundColor = `rgba(255,255,255,${percent})`
+        let list = document.getElementsByClassName('titleLink')
+        if(scrollTop>38){
+          for(let item of list){
+            item.style.color='#000'
+          }
+        }else{
+          for(let item of list){
+            item.style.color='#fff'
+          }
+        }
       }
     },
     destroyed (){

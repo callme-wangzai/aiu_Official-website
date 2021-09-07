@@ -29,28 +29,15 @@
 				</div> -->
 				<div class="i-h-nav">
 					<ul class="h-nav-list">
-						<li><nuxt-link to="/">首页</nuxt-link></li>
+						<li><nuxt-link class="titleLink" to="/">首页</nuxt-link></li>
 						<li>
-							<nuxt-link to="/brand">产品和服务</nuxt-link>
-							<!-- <ul class="h-nav-list-child">
-								<li><a href="/brand#brand-story">品牌故事</a></li>
-								<li><a href="/brand#brand-background">品牌背景</a></li>
-								<li><a href="/brand#brand-development">发展历程</a></li>
-								<li><a href="/brand#brand-concept">品牌理念</a></li>
-								<li><a href="/brand#brand-strength">品牌荣誉</a></li>
-							</ul> -->
+							<nuxt-link class="titleLink" to="/brand">产品和服务</nuxt-link>
 						</li>
 						<li>
-							<nuxt-link to="/leader">智能硬件</nuxt-link>
+							<nuxt-link class="titleLink" to="/leader">智能硬件</nuxt-link>
 						</li>
 						<li>
-							<nuxt-link to="/experice">关于爱柚</nuxt-link>
-							<!-- <ul class="h-nav-list-child">
-								<li><nuxt-link to="/experice/bt">包头</nuxt-link></li>
-								<li><nuxt-link to="/experice/cd">成都</nuxt-link></li>
-								<li><nuxt-link to="/experice/nj">南京</nuxt-link></li>
-								<li><nuxt-link to="/experice/dg">东莞</nuxt-link></li>
-							</ul> -->
+							<nuxt-link class="titleLink" to="/experice">关于爱柚</nuxt-link>
 						</li>
 						<!-- <li>
 							<nuxt-link target="_blank" to="/prod">产品介绍</nuxt-link>
@@ -149,7 +136,7 @@
 	#index-header {
 	    width:  100%;
 	    /* height: 158px; */
-	    background:  #fff;
+	    /* background:  #fff; */
 	    z-index: 666;
 	}
 
@@ -163,8 +150,8 @@
 	    position:  relative;
 	    width:  100%;
 	    height:  100%;
-	    background: #fff;
-	    border-bottom: 2px solid #d5d5d8;
+	    /* background: #fff; */
+	    /* border-bottom: 2px solid #d5d5d8; */
 	    box-sizing:  border-box;
 	}
 
@@ -266,7 +253,7 @@
 	    width:  100%;
 	    height:  100%;
 	    padding-bottom:  6px;
-	    color: #6d6d6d;
+	    color: #fff;
 	    -webkit-box-sizing: border-box;
 	    -moz-box-sizing: border-box;
 	    box-sizing: border-box;
@@ -276,16 +263,16 @@
 	}
 
 	.h-nav-list>li:hover>a, .h-nav-list .nuxt-link-exact-active, .h-nav-list .nuxt-link-active {
-	    color: #22202b;
-	    border-bottom: 2px solid #2f2d37;
+	    
+	    /* border-bottom: 2px solid #2f2d37; */
 	}
  	
 	.h-nav-list>li:first-child .nuxt-link-active{
 		border-bottom: 2px solid transparent;
 	}
 
-	.h-nav-list>li:first-child .nuxt-link-active.nuxt-link-exact-active{
-		border-bottom: 2px solid #2f2d37;
+	.h-nav-list>li .nuxt-link-exact-active{
+		color: orange;
 	}
 	.h-nav-list-child li a.nuxt-link-exact-active{
 		border: none;
