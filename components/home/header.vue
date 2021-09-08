@@ -94,7 +94,7 @@
 
 <script>
 	import { mapState } from 'vuex'
-
+	
 	export default{
 		name: 'VHeader',
 		data (){
@@ -272,7 +272,7 @@
 	}
 
 	.h-nav-list>li .nuxt-link-exact-active{
-		color: orange;
+		color: orange!important;
 	}
 	.h-nav-list-child li a.nuxt-link-exact-active{
 		border: none;

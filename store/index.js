@@ -7,6 +7,8 @@ Vue.use(Vuex)
 const state = {
 	wordpressAPI: 'http://visney.cn:81',
 	wordpressAPIForJob: 'http://visney.cn:8082',
+	aiuAPI:'http://47.106.86.150:8082',
+	aiuSRC:'http://47.106.86.150',
 	headProdNav: {},
 	headNewsNav: {},
 	headJobNav: {},

@@ -1,20 +1,28 @@
 <template>
 	<div id="index-banner">
 		<div class="i-b-container">
-			<transition-group tag="div" class="part-box" name="listNext" v-show="isLeft">
+			<!-- <transition-group tag="div" class="part-box" name="listNext" v-show="isLeft"> -->
+				<!-- <div class="b-c-part" v-for="(list,index) in bannerData" :key="index" v-show="index === currentIndex" @mouseenter="stop" @mouseleave="go">
+					<a :href="list.href" target="_blank" :rel="list.ref">
+						<img :src="list.bannerSrc" :alt="list.bannerAlt">
+					</a>
+				</div> -->
+			<div class="part-box">
+
+				<div class="b-c-part">
+					<a href="">
+						<img :src="$store.state.aiuSRC+bannerNew.filePath">
+					</a>
+				</div>
+			</div>
+			<!-- </transition-group> -->
+			<!-- <transition-group tag="div" class="part-box" name="listPrev" v-show="!isLeft">
 				<div class="b-c-part" v-for="(list,index) in bannerData" :key="index" v-show="index === currentIndex" @mouseenter="stop" @mouseleave="go">
 					<a :href="list.href" target="_blank" :rel="list.ref">
 						<img :src="list.bannerSrc" :alt="list.bannerAlt">
 					</a>
 				</div>
-			</transition-group>
-			<transition-group tag="div" class="part-box" name="listPrev" v-show="!isLeft">
-				<div class="b-c-part" v-for="(list,index) in bannerData" :key="index" v-show="index === currentIndex" @mouseenter="stop" @mouseleave="go">
-					<a :href="list.href" target="_blank" :rel="list.ref">
-						<img :src="list.bannerSrc" :alt="list.bannerAlt">
-					</a>
-				</div>
-			</transition-group>
+			</transition-group> -->
 		</div>
 
 		<div class="i-b-tab">
@@ -37,6 +45,9 @@
 			bannerData: {
 				type:Array,
 				required:true
+			},
+			bannerNew:{
+
 			}
 		},
 		data (){
@@ -54,6 +65,7 @@
 					this.autoPlay()
 				},4000)
 			});
+			console.log('bannerNew',this.bannerNew)
 		},
 		methods: {
 			go (){

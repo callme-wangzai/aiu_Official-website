@@ -1,12 +1,16 @@
 <template>
   <section class="container">
       <!-- banner -->
-      <VBanner :bannerData="bannerData"></VBanner>
+      <VBanner :bannerData="bannerData" :bannerNew="bannerNew"></VBanner>
+      <!-- 产品展示 -->
+      <div v-for="(item,index) of productList" :key="index">
+        <div style="color:#fff;">{{item.name}}</div>
+      </div>
       <!-- 品牌故事 -->
       <div id="index-story">
         <div class="i-s-contant">
           <div class="s-c-top">
-            <div class="c-t-titleC"><h2>品牌故事</h2></div>
+            <div class="c-t-titleC"><h2>品牌故事1111</h2></div>
             <div class="c-t-titleE">Brand Story</div>
             <div class="c-t-description">爱，一个梦想，一生一世一个家</div>
           </div>
@@ -342,6 +346,19 @@
       let metaData = await axios(`${store.state.wordpressAPI}/NavigationMeta/get/1`);
       //banner数据动态获取
       let banner = await axios(`${store.state.wordpressAPI}/banner/selectAllByTpye/1`);
+      let bannerNew =await axios.post(`${store.state.aiuAPI}/rest/api/file/v1/query/list`,{
+        request:{
+          fileName:"mainBanner"
+        }
+      })
+      let productList = await axios.post(`${store.state.aiuAPI}/rest/api/product/v1/query/list`,{
+        // request:{
+          // asc:true,
+          // sortName:"sortForHome",
+          // name:"枪",
+          // title:"test"
+        // }
+      })
       //首页新闻信息
       let indexFirstNewsList1 = await axios(`${store.state.wordpressAPI}/article/getRecommend/1`);
 			let indexFirstNewsList2 = await axios(`${store.state.wordpressAPI}/article/getRecommend/2`);
@@ -385,6 +402,8 @@
         indexProdList3: indexProdList3.data,
         indexProdList4: indexProdList4.data,
         indexProdList6: indexProdList6.data,
+        bannerNew:bannerNew.data.data.list[0],
+        productList:productList.data.data.list
       } 
     },
     methods: {
