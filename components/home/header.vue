@@ -27,6 +27,9 @@
 					</div>
 					
 				</div> -->
+				<nuxt-link to="/">
+					<img class="h-t-logo" src="~/assets/images/index/logo.png" alt="爱柚">
+				</nuxt-link>
 				<div class="i-h-nav">
 					<ul class="h-nav-list">
 						<li><nuxt-link class="titleLink" to="/">首页</nuxt-link></li>
@@ -94,7 +97,7 @@
 
 <script>
 	import { mapState } from 'vuex'
-	
+
 	export default{
 		name: 'VHeader',
 		data (){
@@ -180,11 +183,16 @@
 
 	.h-t-logo {
 	    position:  absolute;
-	    left: 50%;
+		left:210px;
+		top:12.5px;
+		/* width: 202px; */
+		height:55px;
+		/* line-height: 80px; */
+	    /* left: 50%;
 	    top: 0;
 	    width: 80px;
 	    height:  81px;
-	    margin-left: -40px;
+	    margin-left: -40px; */
 	}
 
 	.h-t-mobile {
@@ -228,12 +236,12 @@
 	}
 	.i-h-nav {
 	    width:  1200px;
-	    height:  60px;
+	    height:  80px;
 	    margin:  0 auto;
-	    padding-top: 15px;
-	    font-size:  14px;
-	    line-height: 54px;
-	    text-align:  center;
+	    /* padding-top: 15px; */
+	    font-size:  18px;
+	    line-height: 80px;
+	    text-align:  right;
 	}
 
 	ul.h-nav-list {
@@ -252,7 +260,7 @@
 	    display:  block;
 	    width:  100%;
 	    height:  100%;
-	    padding-bottom:  6px;
+	    /* padding-bottom:  6px; */
 	    color: #fff;
 	    -webkit-box-sizing: border-box;
 	    -moz-box-sizing: border-box;

@@ -10,9 +10,9 @@
 			<div class="part-box">
 
 				<div class="b-c-part">
-					<a href="">
+					<!-- <a href=""> -->
 						<img :src="$store.state.aiuSRC+bannerNew.filePath">
-					</a>
+					<!-- </a> -->
 				</div>
 			</div>
 			<!-- </transition-group> -->
