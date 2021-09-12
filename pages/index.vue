@@ -15,19 +15,19 @@
               </div>
             </div>
             <div class="img-video">
-              <img :src="$store.state.aiuSRC+item.files[0].filePath" alt="">
-              <img :src="$store.state.aiuSRC+item.files[1].filePath" alt="">
-              <img :src="$store.state.aiuSRC+item.files[1].filePath" alt="">
-              <!-- <audio :src="$store.state.aiuSRC+item.video.filePath"></audio> -->
+              <img v-lazy="$store.state.aiuSRC+item.files[0].filePath" alt="">
+              <img v-lazy="$store.state.aiuSRC+item.files[1].filePath" alt="">
+              <img v-lazy="$store.state.aiuSRC+item.files[1].filePath" alt="">
+              <!-- <audio v-lazy="$store.state.aiuSRC+item.video.filePath"></audio> -->
             </div>
             
           </div>
-          <img class="product-img" v-if="item.carouselFigure[0]" :src="$store.state.aiuSRC+item.carouselFigure[0].filePath" alt="">
+          <img class="product-img" v-if="item.carouselFigure[0]" v-lazy="$store.state.aiuSRC+item.carouselFigure[0].filePath" alt="">
         </div>
         <div class="product type2" v-if="index%3===1">
           <div class="product-all">
             <div class=type2-top>
-              <img :src="$store.state.aiuSRC+item.files[0].filePath" alt="">
+              <img v-lazy="$store.state.aiuSRC+item.files[0].filePath" alt="">
               <div class="main">
                 <div class="name">{{item.name}}</div>
                 <div class="desc">{{item.desc}}</div>
@@ -38,16 +38,16 @@
               </div>
             </div>
             <div class="img-video">
-              <img :src="$store.state.aiuSRC+item.files[0].filePath" alt="">
-              <img :src="$store.state.aiuSRC+item.files[1].filePath" alt="">
-              <img :src="$store.state.aiuSRC+item.files[1].filePath" alt="">
+              <img v-lazy="$store.state.aiuSRC+item.files[0].filePath" alt="">
+              <img v-lazy="$store.state.aiuSRC+item.files[1].filePath" alt="">
+              <img v-lazy="$store.state.aiuSRC+item.files[1].filePath" alt="">
             </div>
           </div>
-          <img class="product-img" v-if="item.carouselFigure[0]" :src="$store.state.aiuSRC+item.carouselFigure[0].filePath" alt="">
+          <img class="product-img" v-if="item.carouselFigure[0]" v-lazy="$store.state.aiuSRC+item.carouselFigure[0].filePath" alt="">
         </div>
         <!-- <div class="product type3" v-if="index%3===2">
           <div class="product-all">{{item.name}}</div>
-          <img class="product-img" v-if="item.carouselFigure[0]" :src="$store.state.aiuSRC+item.carouselFigure[0].filePath" alt="">
+          <img class="product-img" v-if="item.carouselFigure[0]" v-lazy="$store.state.aiuSRC+item.carouselFigure[0].filePath" alt="">
         </div> -->
         <div class="product type3" v-if="index%3===2">
           <div class="product-all">
@@ -61,17 +61,17 @@
                 </div>
               </div>
               <div class="img">
-                <img :src="$store.state.aiuSRC+item.files[0].filePath" alt="">
+                <img v-lazy="$store.state.aiuSRC+item.files[0].filePath" alt="">
               </div>
               <div class="img">
-                <img :src="$store.state.aiuSRC+item.files[1].filePath" alt="">
+                <img v-lazy="$store.state.aiuSRC+item.files[1].filePath" alt="">
               </div>
             </div>
           </div>
-          <img class="product-img" v-if="item.carouselFigure[0]" :src="$store.state.aiuSRC+item.carouselFigure[0].filePath" alt="">
+          <img class="product-img" v-if="item.carouselFigure[0]" v-lazy="$store.state.aiuSRC+item.carouselFigure[0].filePath" alt="">
         </div>
         <!-- <div style="color:#fff;">{{item.name}}==={{index}}</div> -->
-        <!-- <img :src="item.files[0]?$store.state.aiuSRC+item.files[0].filePath:''" alt=""> -->
+        <!-- <img v-lazy="item.files[0]?$store.state.aiuSRC+item.files[0].filePath:''" alt=""> -->
         
       </div>
       <!-- 首页底部 -->
@@ -154,11 +154,11 @@
       //   }
       // })
       let productList = await axios.post(`${store.state.aiuAPI}/rest/api/product/v1/query/list`,{
+        asc:true,
+        sortName:"sortForHome",
         // request:{
-          // asc:true,
-          // sortName:"sortForHome",
-          // name:"枪",
-          // title:"test"
+        //   name:'',
+        //   title:"test"
         // }
       })
 

@@ -14,7 +14,7 @@ module.exports = {
 
       /*以上是设置双核浏览器默认状态下使用极速模式打开*/
       { charset: 'utf-8' },
-      { hid: 'description', name: 'description', content: '卫诗理'},
+      { hid: 'description', name: 'description', content: '爱柚'},
       { name: 'format-detection', content: 'telephone=no' },
       { name: 'viewport', content: 'width=device-width, initial-scale=1.0, user-scalable=no' },
 
@@ -96,6 +96,9 @@ module.exports = {
       //   newsView => '/news/newsView/' + newsView.articleId + '?category=' + newsView.category
       // ))
     }
-  }
+  },
+  plugins: [
+    { src: "~plugins/vueLazyLoad", ssr: false }
+  ]
  
 }
