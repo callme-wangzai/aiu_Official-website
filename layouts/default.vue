@@ -53,10 +53,10 @@
         } else {
           this.headFixed = false;
         }
-        let percent = scrollTop/76 >= 1 ? 0.75 : scrollTop/114
+        let percent = scrollTop/304 >= 1 ? 1 : scrollTop/304
         document.getElementById('index-header').style.backgroundColor = `rgba(255,255,255,${percent})`
         let list = document.getElementsByClassName('titleLink')
-        if(scrollTop>38){
+        if(scrollTop>152){
           for(let item of list){
             item.style.color='#000'
           }
