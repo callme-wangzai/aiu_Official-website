@@ -98,7 +98,12 @@ module.exports = {
     }
   },
   plugins: [
-    { src: "~plugins/vueLazyLoad", ssr: false }
+    { src: "~plugins/vueLazyLoad", ssr: false },
+    // { src: "~plugins/vue-awesome-swiper", ssr: false },
+    {
+      src: "@/plugins/vue-awesome-swiper",
+      ssr: false
+    }
   ]
  
 }

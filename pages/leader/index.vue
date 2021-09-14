@@ -1,128 +1,17 @@
 <template>
-	<section class="container">
-		<div class="leader_said_wrap">
-            <div class="leader_said_box">
-                <div class="leader_said_position">
-                    <div class="leader_said_first">
-                        <div class="leader_said_con leader_said_con1">
-                            <div class="leader_said_con_img">
-                                <img src="~/assets/images/leader/leader_said_01.jpg" alt="">
-                            </div>
-                            <div class="leader_said_video">
-                                <video id="leader_video" controls="controls" preload="auto" poster="http://img.visney.cn/img/banner_img/leader_said_video.jpg">
-                                    <source src="http://img.visney.cn/img/video/leader_said_video.mp4">
-                                </video>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="leader_said_sec">
-                        <div class="leader_said_con leader_said_con2">
-                            <img src="~/assets/images/leader/leader_said_02.jpg" alt="">
-                        </div>
-                        <div class="leader_said_con leader_said_con3">
-                            <img src="~/assets/images/leader/leader_said_03.jpg" alt="">
-                        </div>
-                        <div class="leader_said_con leader_said_con4">
-                            <img src="~/assets/images/leader/leader_said_04.jpg" alt="">
-                        </div>
-                        <div class="leader_said_con leader_said_con5">
-                            <img src="~/assets/images/leader/leader_said_05.jpg" alt="">
-                        </div>
-                        <div class="leader_said_con leader_said_con6">
-                            <img src="~/assets/images/leader/leader_said_06.jpg" alt="">
-                        </div>
-                        <div class="leader_said_con leader_said_con7">
-                            <img src="~/assets/images/leader/leader_said_07.jpg" alt="">
-                        </div>
-                        <div class="leader_said_con leader_said_con8">
-                            <img src="~/assets/images/leader/leader_said_08.jpg" alt="">
-                        </div>
-                    </div>
-                    <div class="leader_said_third">
-                        <div class="leader_said_con leader_said_con9">
-                                <img src="~/assets/images/leader/leader_said_09.jpg" alt="">
-                            </div>
-                        <div class="leader_said_con leader_said_con10">
-                            <img src="~/assets/images/leader/leader_said_10.jpg" alt="">
-                        </div>
-                        <div class="leader_said_con leader_said_con11">
-                            <img src="~/assets/images/leader/leader_said_11.jpg" alt="">
-                        </div>
-                        <div class="leader_said_con leader_said_con12">
-                            <img src="~/assets/images/leader/leader_said_12.jpg" alt="">
-                        </div>
-                        <div class="leader_said_con leader_said_con13">
-                            <img src="~/assets/images/leader/leader_said_13.jpg" alt="">
-                        </div>
-                        <div class="leader_said_con leader_said_con14">
-                            <img src="~/assets/images/leader/leader_said_14.jpg" alt="">
-                        </div>
-                        <div class="leader_said_con leader_said_con15">
-                            <img src="~/assets/images/leader/leader_said_15.jpg" alt="">
-                        </div>
-                        <div class="leader_said_con leader_said_con16">
-                            <img src="~/assets/images/leader/leader_said_16.jpg" alt="">
-                        </div>
-                    </div>
-                    <div class="leader_said_fou">
-                        <div class="leader_said_con leader_said_con17">
-                            <img src="~/assets/images/leader/leader_said_17.jpg" alt="">
-                        </div>
-                        <div class="leader_said_con leader_said_con18">
-                            <img src="~/assets/images/leader/leader_said_18.jpg" alt="">
-                        </div>
-                        <div class="leader_said_con leader_said_con19">
-                            <img src="~/assets/images/leader/leader_said_19.jpg" alt="">
-                        </div>
-                        <div class="leader_said_con leader_said_con20">
-                            <img src="~/assets/images/leader/leader_said_20.jpg" alt="">
-                        </div>
-                        <div class="leader_said_con leader_said_con21">
-                            <img src="~/assets/images/leader/leader_said_21.jpg" alt="">
-                        </div>
-                        <div class="leader_said_con22_box">
-                            <div class="leader_said_con leader_said_con22">
-                                <img src="~/assets/images/leader/leader_said_22.jpg" alt="">
-                            </div>
-                            <div class="leader_said_letter_btn">
-                                <div class="leader_said_letter_btn1" @click="changeLetter1"></div>
-                                <div class="leader_said_letter_btn2" @click="changeLetter2"></div>
-                            </div>
-                            <div class="leader_said_letter1_con" v-if="showLetter1">
-                                <div class="leader_said_letter_img">
-                                    <div @click="changeLetter1">
-                                        <img src="~/assets/images/leader/leader_said_letter1.jpg" alt="" >
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="leader_said_letter2_con" v-if="showLetter2">
-                                <div class="leader_said_letter_img">
-                                    <div @click="changeLetter2">
-                                        <img src="~/assets/images/leader/leader_said_letter2.jpg" alt=""  >
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="leader_said_con leader_said_con23">
-                            <img src="~/assets/images/leader/leader_said_23.jpg" alt="">
-                        </div>
-                    </div>
-                    <div class="leader_said_fiv">
-                        <div class="leader_said_con leader_said_con24">
-                            <img src="~/assets/images/leader/leader_said_24.jpg" alt="">
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-	</section>
+	<div>
+         <VBanner :banner="item.carouselFigure" v-for="(item,index) in productList" :key="index"></VBanner>
+    </div>
 </template>
 
 
 <script>
-	
-
+	import axios from 'axios'
+    import VBanner from '~/components/home/banner'
 	export default {
+        components: {
+            VBanner,
+        },
         data (){
             return {
                 showLetter1: false,
@@ -139,13 +28,28 @@
         },
 		head () {
 		  return {
-		    title:'创始人说',
+		    title:'智能硬件',
 		    meta: [
 		      {name:'keywords',hid: 'keywords',content:'创始人说'},
 		      {name:'description',hid:'description',content:'创始人说'}
 		    ]
 		  }
-		}
+		},
+        async asyncData({params,store}){
+            //首页head信息
+            let metaData = await axios(`${store.state.wordpressAPI}/NavigationMeta/get/1`);
+            //banner数据动态获取
+            // let banner = await axios.post(`${store.state.wordpressAPI}/rest/api/display/v1/find-by-keys`,{
+            //   // ['main_carouselFigure']
+            // });
+            let productList = await axios.post(`${store.state.aiuAPI}/rest/api/product/v1/query/list`,{
+                asc:true,
+                sortName:"sortForMenu3",
+            })
+            return {
+                productList:productList.data.data.list,
+            } 
+        },
 	}
 </script>
 

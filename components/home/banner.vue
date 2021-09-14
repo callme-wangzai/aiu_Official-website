@@ -1,117 +1,100 @@
 <template>
 	<div id="index-banner">
-		<div class="i-b-container">
-			<!-- <transition-group tag="div" class="part-box" name="listNext" v-show="isLeft"> -->
-				<!-- <div class="b-c-part" v-for="(list,index) in bannerData" :key="index" v-show="index === currentIndex" @mouseenter="stop" @mouseleave="go">
-					<a :href="list.href" target="_blank" :rel="list.ref">
-						<img :src="list.bannerSrc" :alt="list.bannerAlt">
-					</a>
-				</div> -->
-			<div class="part-box">
-
-				<div class="b-c-part">
-					<!-- <a href=""> -->
-						<img :src="$store.state.aiuSRC+bannerNew.filePath">
-					<!-- </a> -->
+		<div v-swiper:mySwiper="swiperOption">
+			<!-- 有传参进来 -->
+			<div v-if="banner.length>0" class="swiper-wrapper">
+				<div class="swiper-slide" v-for="(banner,index) in banner" :key="index">
+					<img :src="$store.state.aiuSRC+banner.filePath">
 				</div>
 			</div>
-			<!-- </transition-group> -->
-			<!-- <transition-group tag="div" class="part-box" name="listPrev" v-show="!isLeft">
-				<div class="b-c-part" v-for="(list,index) in bannerData" :key="index" v-show="index === currentIndex" @mouseenter="stop" @mouseleave="go">
-					<a :href="list.href" target="_blank" :rel="list.ref">
-						<img :src="list.bannerSrc" :alt="list.bannerAlt">
-					</a>
+			<!-- 无传参，用本地 -->
+			<div v-else class="swiper-wrapper">
+				<div class="swiper-slide" v-for="(banner,index) in swiperData" :key="index">
+					<img :src="banner.imgUrl">
 				</div>
-			</transition-group> -->
-		</div>
-
-		<div class="i-b-tab">
-			<ul>
-				<li v-for="(item,index) in bannerData" :key="index" :class="{active: index === currentIndex}" @click="change(index)"></li>
-			</ul>
-		</div>
-		<div class="i-b-btn">
-			<div class="btn-pre" @click="prev" @mouseenter="stop" @mouseleave="go"></div>
-			<div class="btn-next" @click="next" @mouseenter="stop" @mouseleave="go"></div>
+			</div>
+			<div class="swiper-pagination"></div>
+			<div class="swiper-button-prev swiper-button-white"></div>
+			<div class="swiper-button-next swiper-button-white"></div>
 		</div>
 	</div>
 </template>
 
 <script>
 	export default {
+		components: {
+		},
 		name: 'VBanner',
 		props:{
-			//bannerData为对象，里面的data属性包含着图片的数组
-			bannerData: {
+			//banner为对象，里面的data属性包含着图片的数组
+			banner: {
 				type:Array,
 				required:true
 			},
-			bannerNew:{
-
-			}
 		},
 		data (){
 			return {
 				isLeft:true,
 				currentIndex: 0,
 				timer: '',
-				clickTime: 0
+				clickTime: 0,
+				swiperData:[
+					{
+						imgUrl:'http://47.106.86.150:8083/img/picture/aba2d8494a8d4f9bbfda31e776ce12c9_1631114275350.png',
+					},
+					{
+						imgUrl:'http://47.106.86.150:8083/img/picture/aba2d8494a8d4f9bbfda31e776ce12c9_1631114275350.png',
+					},
+					{
+						imgUrl:'http://47.106.86.150:8083/img/picture/aba2d8494a8d4f9bbfda31e776ce12c9_1631114275350.png',
+					}
+				],
+				// swiperOption: {
+				// 	loop: true,
+				// 	autoplay: {
+				// 	delay: 3000,
+				// 	stopOnLastSlide: false,
+				// 	disableOnInteraction: false
+				// 	},
+				// 	// 显示分页
+				// 	pagination: {
+				// 	el: ".swiper-pagination",
+				// 	clickable: true //允许分页点击跳转
+				// 	},
+				// 	// 设置点击箭头
+				// 	navigation: {
+				// 	nextEl: ".swiper-button-next",
+				// 	prevEl: ".swiper-button-prev"
+				// 	}
+				// },
+				banners: [ 'http://47.106.86.150:8083/img/picture/aba2d8494a8d4f9bbfda31e776ce12c9_1631114275350.png', 'http://47.106.86.150:8083/img/picture/aba2d8494a8d4f9bbfda31e776ce12c9_1631114275350.png', 'http://47.106.86.150:8083/img/picture/aba2d8494a8d4f9bbfda31e776ce12c9_1631114275350.png' ],
+				swiperOption: {
+					pagination: {
+						el: ".swiper-pagination",
+						clickable: true //允许分页点击跳转
+					},
+					navigation: {
+						nextEl: ".swiper-button-next",
+						prevEl: ".swiper-button-prev"
+					}
+				// some swiper options...
+				}
+
+
 			}
+		},
+		computed:{
+			// swiper(){
+			// 	return this.$refs.mySwiper.swiper
+			// }
 		},
 		created (){
-			//在DOM加载完成后，下个tick中开始轮播
-			this.$nextTick(()=>{
-				this.timer = setInterval(()=>{
-					this.autoPlay()
-				},4000)
-			});
-			console.log('bannerNew',this.bannerNew)
+
+		},
+		mounted(){
+			console.log('banner',this.banner)
 		},
 		methods: {
-			go (){
-				this.timer = setInterval(()=>{
-					this.autoPlay()
-				},4000)
-			},
-			stop (){
-				clearInterval(this.timer);
-				this.timer = null;
-			},
-			change (index){
-				this.currentIndex = index;
-			},
-			autoPlay (){
-				this.isLeft = true;
-				this.currentIndex ++;
-				if (this.currentIndex > this.bannerData.length - 1) {
-					this.currentIndex = 0;
-				}
-			},
-			prev (){
-				if (new Date() - this.clickTime > 850) {
-					this.isLeft = false;
-					this.currentIndex --;
-					if (this.currentIndex < 0) {
-						this.currentIndex = this.bannerData.length - 1;
-					}
-
-					this.clickTime = new Date();
-				}
-				
-			},
-			next (){
-				if (new Date() - this.clickTime > 850) {
-					this.isLeft = true;
-					this.currentIndex ++;
-					if (this.currentIndex > this.bannerData.length - 1) {
-						this.currentIndex = 0;
-					}
-
-					this.clickTime = new Date();
-				}
-
-				
-			}
 		}
 	}
 </script>
@@ -121,108 +104,28 @@
 	    position:  relative;
 	    overflow:  hidden; 
 	    width:  100%;
-	    height:  700px;
+	    height:  768px;
 	}
-
-	.i-b-container {
-	    position:  relative;
-	    width: 1200px;
-	    height:  100%;
-	    margin:  0 auto;
+	.swiper-slide>img{
+		width: 100%;
+    	height: 768px;
 	}
-
-	.i-b-tab {
-	    position: absolute;
-	    left: 50%;
-	    bottom: 27px;
-	    width: 62px;
-	    height: 10px;
-	    margin-left: -30px;
+	
+	
+</style>
+<style>
+	#index-banner .swiper-pagination-bullet{
+		background:#fff!important;
+		cursor: pointer;
 	}
-
-	.b-c-part {
-	    position:  absolute;
-	    top: 0;
-	    left: 50%;
-	    overflow:  hidden;
-	    width: 1920px;
-	    height:  100%;
-	    margin-left: -960px;
+	#index-banner .swiper-pagination-bullet-active{
+		background:orange!important;
 	}
-
-	.b-c-part img {
-	    display:  block;
-	    width:  100%;
-	    height:  100%;
+	#index-banner .swiper-container-horizontal > .swiper-pagination-bullets .swiper-pagination-bullet{
+		margin:0px 8px
 	}
-
-	.i-b-btn {
-	    position:  relative;
-	    width:  1200px;
-	    margin: 0 auto;
-	}
-
-	.btn-pre {
-	    position:  absolute;
-	    top: -340px;
-	    left: -155px;
-	    width:  18px;
-	    height:  21px;
-	    background: url(~/assets/images/index/banner-btn-pre.png) center center no-repeat;
-	    cursor:  pointer;
-	}
-
-	.btn-next {
-	    position: absolute;
-	    top: -340px;
-	    right: -155px;
-	    width: 18px;
-	    height: 21px;
-	    background: url(~/assets/images/index/banner-btn-next.png) center center no-repeat;
-	    cursor: pointer;
-	}
-
-	.btn-pre:hover{
-		background: url(~/assets/images/index/banner-btn-pre-cur.png) center center no-repeat;
-	}
-
-	.btn-next:hover{
-		background: url(~/assets/images/index/banner-btn-next-cur.png) center center no-repeat;
-	}
-
-	.listNext-enter-to {
-	  transition: all 1s ease;
-	  transform: translateX(0);
-	}
-
-	.listNext-leave-active {
-	  transition: all 1s ease;
-	  transform: translateX(-100%)
-	}
-
-	.listNext-enter {
-	  transform: translateX(100%)
-	}
-
-	.listNext-leave {
-	  transform: translateX(0)
-	}
-
-	.listPrev-enter-to {
-	  transition: all 1s ease;
-	  transform: translateX(0);
-	}
-
-	.listPrev-leave-active {
-	  transition: all 1s ease;
-	  transform: translateX(100%)
-	}
-
-	.listPrev-enter {
-	  transform: translateX(-100%)
-	}
-
-	.listPrev-leave {
-	  transform: translateX(0)
+	#index-banner .swiper-pagination-bullet{
+		width:14px;
+		height:14px;
 	}
 </style>

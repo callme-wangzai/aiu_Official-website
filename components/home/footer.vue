@@ -23,7 +23,7 @@
 									<nuxt-link to="/">首页</nuxt-link>
 								</li>
 								<li class="footer-nav-list">
-									<nuxt-link target="_blank" to="/news">商城</nuxt-link>
+									<nuxt-link target="_blank" to="/">商城</nuxt-link>
 									<ul class="footer-nav-child footer-nav-childNews">
 										<li v-for="(item,index) in productList" :key="index"><a target="_blank" :href="item.mallLink">{{item.name}}</a></li>
 									</ul>
@@ -32,17 +32,17 @@
 									<nuxt-link target="_blank" to="/prod">APP</nuxt-link>
 									<ul class="footer-nav-child footer-nav-childProd">
 										<li>
-											<nuxt-link target="_blank" to="/prod/newPro">最新产品</nuxt-link>
+											<nuxt-link target="_blank" to="/prod">APP</nuxt-link>
 										</li>
-										<li v-for="(item,index) in headProdNav" :key="index" v-if="index<4">
+										<!-- <li v-for="(item,index) in headProdNav" :key="index" v-if="index<4">
 											<nuxt-link target="_blank" :to="{name: 'prod-typeId',params: {typeId: item.proCategoryId}}">{{item.proCategoryName}}</nuxt-link>
-										</li>
+										</li> -->
 									</ul>
 								</li>
 								<li class="footer-nav-list">
-									<nuxt-link to="/service/contact">关于我们</nuxt-link>
+									<nuxt-link to="/experice">关于我们</nuxt-link>
 									<ul class="footer-nav-child">
-										<li class="footer-nav-child-list"><nuxt-link to="/service/presales">联系我们</nuxt-link></li>
+										<li class="footer-nav-child-list"><nuxt-link to="/experice">联系我们</nuxt-link></li>
 										<!-- <li class="footer-nav-child-list"><nuxt-link to="/service/aftersales">售后服务</nuxt-link></li>
 										<li class="footer-nav-child-list"><nuxt-link to="/service/contact">联系我们</nuxt-link></li>
 										<li class="footer-nav-child-list"><nuxt-link to="/service/questions">常见问题</nuxt-link></li> -->

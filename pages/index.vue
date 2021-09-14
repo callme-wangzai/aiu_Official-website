@@ -1,10 +1,10 @@
 <template>
   <section class="container">
       <!-- banner -->
-      <VBanner :bannerData="bannerData" :bannerNew="bannerNew"></VBanner>
+      <VBanner :banner="[]"></VBanner>
       <!-- 产品展示 -->
       <div v-for="(item,index) in productList" :key="index">
-        <div class="product type1" v-if="index%3===0">
+        <div class="product type1" v-if="item.renderType===1">
           <div class="product-all">
             <div class="main">
               <div class="name">{{item.name}}</div>
@@ -24,7 +24,7 @@
           </div>
           <img class="product-img" v-if="item.carouselFigure[0]" v-lazy="$store.state.aiuSRC+item.carouselFigure[0].filePath" alt="">
         </div>
-        <div class="product type2" v-if="index%3===1">
+        <div class="product type2" v-if="item.renderType===2">
           <div class="product-all">
             <div class=type2-top>
               <img v-lazy="$store.state.aiuSRC+item.files[0].filePath" alt="">
@@ -49,7 +49,7 @@
           <div class="product-all">{{item.name}}</div>
           <img class="product-img" v-if="item.carouselFigure[0]" v-lazy="$store.state.aiuSRC+item.carouselFigure[0].filePath" alt="">
         </div> -->
-        <div class="product type3" v-if="index%3===2">
+        <div class="product type3" v-if="item.renderType===3">
           <div class="product-all">
             <div class="contain">
               <div class="main">
@@ -70,31 +70,10 @@
           </div>
           <img class="product-img" v-if="item.carouselFigure[0]" v-lazy="$store.state.aiuSRC+item.carouselFigure[0].filePath" alt="">
         </div>
-        <!-- <div style="color:#fff;">{{item.name}}==={{index}}</div> -->
-        <!-- <img v-lazy="item.files[0]?$store.state.aiuSRC+item.files[0].filePath:''" alt=""> -->
         
       </div>
       <!-- 首页底部 -->
-      <div class="banner">
-        <div class="banner-main">
-          <img class="white_logo" src="~/assets/images/index/logo_white.jpg" alt="">
-          <div class="name">APP</div>
-          <div class="title">运动使我快乐</div>
-          <div class="code">
-            <!-- 微信二维码 -->
-            <div class="code-detail">
-              <vue-qr :logoSrc="imageUrl" :text="weixinCode" :size="150"></vue-qr>
-              <div class="code-name">微信二维码</div>
-            </div>
-            <!-- app二维码 -->
-            <div class="code-detail">
-              <vue-qr :logoSrc="imageUrl" :text="appCode" :size="150"></vue-qr>
-              <div class="code-name">APP二维码</div>
-            </div>
-          </div>
-        </div>
-        <img src="~/assets/images/index/banner.png" alt="">
-      </div>
+      <BBanner :appList="appList"/>
   </section>
 </template>
 <script>
@@ -103,10 +82,11 @@
   import VHeader from '~/components/home/header'
   import VFooter from '~/components/home/footer'
   import VBanner from '~/components/home/banner'
+  import BBanner from '~/components/home/bottom-banner'
   import indexVideo from '~/components/home/indexVideo'
   import prodListShow from '~/components/common/prodListShow'
   import indexNewsListShow from '~/components/common/indexNewsListShow'
-  import vueQr from 'vue-qr'
+  
   export default {
     data(){
       return {
@@ -114,9 +94,7 @@
         num:0,
         clickProdIndex:0,
         clickNewsIndex: 0,
-        imageUrl: require("~/assets/images/index/TThome-logo.png"),
-        weixinCode:'www.weixin.com',
-        appCode:'www.aiyou.com'
+        
       }
     },
     components: {
@@ -124,17 +102,17 @@
       VHeader,
       VFooter,
       VBanner,
+      BBanner,
       indexVideo,
       prodListShow,
-      indexNewsListShow,
-      vueQr
+      indexNewsListShow
     },
     head () {
       return {
-        title:this.metaData.navigationTitle,
+        title:'aiyou',
         meta: [
-          {name:'keywords',hid: 'keywords',content:`${this.metaData.navigationKeyword}`},
-          {name:'description',hid:'description',content:`${this.metaData.navigationDescription}`}
+          {name:'keywords',hid: 'keywords',content:`云麦,YUNMAI,好轻,云麦筋膜枪,云麦智能手表,云麦智能跳绳,云麦体脂秤,云麦好轻,云麦好轻Pro,云麦好轻Color2,云麦好轻mini2,云麦腕力球,云麦弹力圈,云麦瑜伽垫,体脂秤,筋膜枪,瑜伽,腕力球,体脂称`},
+          {name:'description',hid:'description',content:`云麦科技旗下所有产品，包括云麦筋膜枪系列YUNMAI按摩筋膜枪PB、YUNMAI按摩筋膜枪SC，云麦体脂秤系列云麦好轻2、云麦好轻Pro、云麦好轻Color2、云麦好轻mini2，智能穿戴系列YUNMAI智能训练手表、YUNMAI智能跳绳，瑜伽系列瑜伽垫、瑜伽球、瑜伽砖、瑜伽柱、泡沫轴、瑜伽袜，运动服饰系列运动内衣、运动紧身裤等，运动装备系列运动跳绳、运动臂包、运动腰包、运动护膝、运动护肘、运动护腕、健力环、弹力带、阻力圈、握力圈等，同时提供云麦客户服务及售后支持`}
         ]
       }
     },
@@ -142,17 +120,9 @@
       //首页head信息
       let metaData = await axios(`${store.state.wordpressAPI}/NavigationMeta/get/1`);
       //banner数据动态获取
-      let banner = await axios(`${store.state.wordpressAPI}/banner/selectAllByTpye/1`);
-      let bannerNew =await axios.post(`${store.state.aiuAPI}/rest/api/file/v1/query/list`,{
-        request:{
-          fileName:"mainBanner"
-        }
-      })
-      // let background =await axios.post(`${store.state.aiuAPI}/rest/api/file/v1/query/list`,{
-      //   request:{
-      //     fileName:"背景"
-      //   }
-      // })
+      // let banner = await axios.post(`${store.state.wordpressAPI}/rest/api/display/v1/find-by-keys`,{
+      //   // ['main_carouselFigure']
+      // });
       let productList = await axios.post(`${store.state.aiuAPI}/rest/api/product/v1/query/list`,{
         asc:true,
         sortName:"sortForHome",
@@ -161,12 +131,12 @@
         //   title:"test"
         // }
       })
-
+      let appList = await axios.get(`${store.state.aiuAPI}/rest/api/app/v1/list/all`)
       return {
         metaData: metaData.data,
-        bannerData: banner.data,
-        bannerNew:bannerNew.data.data.list[0],
+        // banner:banner.data,
         productList:productList.data.data.list,
+        appList:appList.data.data
         // backgroundList:background.data.data.list
       } 
     },
@@ -251,7 +221,6 @@
   .type2 .product-all .type2-top>img{
     width: 442px;
     height:352px;
-    background: green;
   }
   .type2 .product-all .main{
     width:500px;
@@ -280,7 +249,6 @@
   .type2 .img-video>img,audio{
     width: 310.5px;
     height:310.5px;
-    background: green;
     border-radius: 155.25px;
   }
   .type3 .contain{
@@ -328,47 +296,5 @@
     color: #35495e;
     letter-spacing: 1px;
   }
-  .banner{
-    width:100%;
-    position: relative;
-  }
-  .banner .banner-main{
-    position: absolute;
-    width: 100%;
-    height: 100%;
-    background: rgba(0, 0, 0, 0.6);
-    text-align: right;
-    padding-right: 157.5px;
-    padding-top:275.25px;
-    box-sizing: border-box;
-  }
-  .banner-main .white_logo{
-    width:307.5px;
-  }
-  .banner-main .name{
-    color: #9f9f9f;
-    font-size:54px;
-  }
-  .banner-main .code{
-    
-    display: flex;
-    flex-direction:row-reverse;
-  }
-  .banner-main .code .code-detail{
-    margin-top:50px;
-    margin-left:20px;
-  }
-  .banner-main .code .code-name{
-    color: #9f9f9f;
-    text-align: center;
-    margin-top:10px;
-  }
-  .banner-main .title{
-    font-size: 14px;
-    color: #9f9f9f;
-  }
-  .banner>img{
-    width:100%;
-    /* height: 100%; */
-  }
+  
 </style>
