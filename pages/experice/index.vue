@@ -7,12 +7,6 @@
 
 <script>
 	import axios from 'axios'
-	import expericeDesign from '~/components/experice/expericeDesign'
-	import expericeBanner from '~/components/experice/expericeBanner'
-	import expericeIdea from '~/components/experice/expericeIdea'
-	import expericeNewModel from '~/components/experice/expericeNewModel'
-	import expericeService from '~/components/experice/expericeService'
-
 	export default {
 		data (){
 			return {
@@ -30,25 +24,23 @@
 		async asyncData({params,store}){
 		  //head信息
 		    let metaData = await axios(`${store.state.wordpressAPI}/NavigationMeta/get/3`);
-			let fileList = await axios.post(`${store.state.aiuAPI}/rest/api/file/v1/query/list`,{
-				pageNum: 1,
-				pageSize: 10,
-				request:{
-				  fileName:'aboutUS',
-				  fileType:1
-				}
-			})
+			// let fileList = await axios.post(`${store.state.aiuAPI}/rest/api/file/v1/query/list`,{
+			// 	pageNum: 1,
+			// 	pageSize: 10,
+			// 	request:{
+			// 	  fileName:'aboutUS',
+			// 	  fileType:1
+			// 	}
+			// })
+			let fileList = await axios.post(`${store.state.aiuAPI}/rest/api/display/v1/find-by-keys`,
+				['about_us']
+			);
 		  return {
 		    metaData: metaData.data,
-			fileList:fileList.data.data.list,
+			fileList:fileList.data.data.about_us.pictures
 		  } 
 		},
 		components: {
-			expericeBanner,
-			expericeIdea,
-			expericeNewModel,
-			expericeService,
-			expericeDesign
 		}
 	}
 </script>

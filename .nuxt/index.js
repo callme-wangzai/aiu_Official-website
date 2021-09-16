@@ -14,6 +14,7 @@ import { createStore } from './store.js'
 /* Plugins */
 import nuxt_plugin_vueLazyLoad_13d115e9 from 'nuxt_plugin_vueLazyLoad_13d115e9' // Source: ../plugins/vueLazyLoad (ssr: false)
 import nuxt_plugin_vueawesomeswiper_0f4ed586 from 'nuxt_plugin_vueawesomeswiper_0f4ed586' // Source: ../plugins/vue-awesome-swiper (ssr: false)
+import nuxt_plugin_vuevideo_1c1187f7 from 'nuxt_plugin_vuevideo_1c1187f7' // Source: ../plugins/vue-video.js (ssr: false)
 
 
 // Component: <no-ssr>
@@ -156,6 +157,7 @@ async function createApp (ssrContext) {
   if (process.browser) { 
     if (typeof nuxt_plugin_vueLazyLoad_13d115e9 === 'function') await nuxt_plugin_vueLazyLoad_13d115e9(app.context, inject)
     if (typeof nuxt_plugin_vueawesomeswiper_0f4ed586 === 'function') await nuxt_plugin_vueawesomeswiper_0f4ed586(app.context, inject)
+    if (typeof nuxt_plugin_vuevideo_1c1187f7 === 'function') await nuxt_plugin_vuevideo_1c1187f7(app.context, inject)
   }
 
   // If server-side, wait for async component to be resolved first

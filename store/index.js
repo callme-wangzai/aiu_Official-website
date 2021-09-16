@@ -46,7 +46,10 @@ const actions = {
 			commit('setHeadProdNav',headProdNav.data);
 		//商品导航
 			// let headNewsNav = await axios(`${state.wordpressAPI}/articleCategory/getAll`);
-			let productList = await axios.post(`${state.aiuAPI}/rest/api/product/v1/query/list`,{})
+			let productList = await axios.post(`${state.aiuAPI}/rest/api/product/v1/query/list`,{
+				asc:true,
+        		sortName:"sortForHome"
+			})
 			commit('setProductList',productList.data.data.list);
 		//招聘导航
 			let headJobNav = await axios(`${state.wordpressAPIForJob}/jobClass/getAll`);

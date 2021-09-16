@@ -9,16 +9,7 @@
 
 		<div class="course-list">
 			<ul>
-				<li class="course" v-for="(item,index) in fileList" :key="index">
-					<img :src="$store.state.aiuSRC+item.filePath" alt="">
-				</li>
-				<li class="course" v-for="(item,index) in fileList" :key="index">
-					<img :src="$store.state.aiuSRC+item.filePath" alt="">
-				</li>
-				<li class="course" v-for="(item,index) in fileList" :key="index">
-					<img :src="$store.state.aiuSRC+item.filePath" alt="">
-				</li>
-				<li class="course" v-for="(item,index) in fileList" :key="index">
+				<li class="course" v-for="(item,index) in courseList" :key="index">
 					<img :src="$store.state.aiuSRC+item.filePath" alt="">
 				</li>
 			</ul>
@@ -61,27 +52,17 @@
 		  //head信息
 		    let metaData = await axios(`${store.state.wordpressAPI}/NavigationMeta/get/2`);
 			let appList = await axios.get(`${store.state.aiuAPI}/rest/api/app/v1/list/all`)
-			let fileList = await axios.post(`${store.state.aiuAPI}/rest/api/file/v1/query/list`,{
-				pageNum: 1,
-				pageSize: 10,
-				request:{
-				  fileName:'course',
-				  fileType:1
-				}
-			})
-			let IntelligentData = await axios.post(`${store.state.aiuAPI}/rest/api/file/v1/query/list`,{
-				pageNum: 1,
-				pageSize: 10,
-				request:{
-				  fileName:'智能数据',
-				  fileType:1
-				}
-			})
+			let IntelligentData = await axios.post(`${store.state.aiuAPI}/rest/api/display/v1/find-by-keys`,
+				['intelligent_data']
+			);
+			let courseList = await axios.post(`${store.state.aiuAPI}/rest/api/display/v1/find-by-keys`,
+				['course_list']
+			);
 		  return {
 		    metaData: metaData.data,
 			appList:appList.data.data,
-			fileList:fileList.data.data.list,
-			IntelligentData:IntelligentData.data.data.list
+			IntelligentData:IntelligentData.data.data.intelligent_data.pictures,
+			courseList:courseList.data.data.course_list.pictures
 		  } 
 		}
 	}

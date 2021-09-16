@@ -1,17 +1,17 @@
 <template>
   <section class="container">
       <!-- banner -->
-      <VBanner :banner="[]"></VBanner>
+      <VBanner :banner="banner"></VBanner>
       <!-- 产品展示 -->
-      <div v-for="(item,index) in productList" :key="index">
+      <div :id="'product'+index" v-for="(item,index) in productList" :key="index">
         <div class="product type1" v-if="item.renderType===1">
           <div class="product-all">
             <div class="main">
               <div class="name">{{item.name}}</div>
               <div class="desc">{{item.desc}}</div>
               <div class="link">
-                <a>观看视频 ></a>
-                <a>立即购买 ></a>
+                <a @click="watchVideo(item)">观看视频 ></a>
+                <a @click="shopLink(item)">立即购买 ></a>
               </div>
             </div>
             <div class="img-video">
@@ -20,7 +20,6 @@
               <img v-lazy="$store.state.aiuSRC+item.files[1].filePath" alt="">
               <!-- <audio v-lazy="$store.state.aiuSRC+item.video.filePath"></audio> -->
             </div>
-            
           </div>
           <img class="product-img" v-if="item.carouselFigure[0]" v-lazy="$store.state.aiuSRC+item.carouselFigure[0].filePath" alt="">
         </div>
@@ -32,8 +31,8 @@
                 <div class="name">{{item.name}}</div>
                 <div class="desc">{{item.desc}}</div>
                 <div class="link">
-                  <a>观看视频 ></a>
-                  <a>立即购买 ></a>
+                  <a @click="watchVideo(item)">观看视频 ></a>
+                  <a @click="shopLink(item)">立即购买 ></a>
                 </div>
               </div>
             </div>
@@ -56,8 +55,8 @@
                 <div class="name">{{item.name}}</div>
                 <div class="desc">{{item.desc}}</div>
                 <div class="link">
-                  <a>观看视频 ></a>
-                  <a>立即购买 ></a>
+                  <a @click="watchVideo(item)">观看视频 ></a>
+                  <a @click="shopLink(item)">立即购买 ></a>
                 </div>
               </div>
               <div class="img">
@@ -67,8 +66,15 @@
                 <img v-lazy="$store.state.aiuSRC+item.files[1].filePath" alt="">
               </div>
             </div>
+            
           </div>
           <img class="product-img" v-if="item.carouselFigure[0]" v-lazy="$store.state.aiuSRC+item.carouselFigure[0].filePath" alt="">
+        </div>
+        
+      </div>
+      <div id="videoPop" v-if="videoModal">
+        <div class="box">
+          <Video @closeModal="closeModal" :videoSrc="videoUrl"/>
         </div>
         
       </div>
@@ -77,6 +83,7 @@
   </section>
 </template>
 <script>
+  import { mapState } from 'vuex'
   import axios from 'axios'
   import AppLogo from '~/components/AppLogo.vue'
   import VHeader from '~/components/home/header'
@@ -84,6 +91,7 @@
   import VBanner from '~/components/home/banner'
   import BBanner from '~/components/home/bottom-banner'
   import indexVideo from '~/components/home/indexVideo'
+  import Video from '~/components/video'
   import prodListShow from '~/components/common/prodListShow'
   import indexNewsListShow from '~/components/common/indexNewsListShow'
   
@@ -94,7 +102,8 @@
         num:0,
         clickProdIndex:0,
         clickNewsIndex: 0,
-        
+        videoUrl:'',
+        videoModal:false
       }
     },
     components: {
@@ -105,7 +114,8 @@
       BBanner,
       indexVideo,
       prodListShow,
-      indexNewsListShow
+      indexNewsListShow,
+      Video
     },
     head () {
       return {
@@ -120,28 +130,37 @@
       //首页head信息
       let metaData = await axios(`${store.state.wordpressAPI}/NavigationMeta/get/1`);
       //banner数据动态获取
-      // let banner = await axios.post(`${store.state.wordpressAPI}/rest/api/display/v1/find-by-keys`,{
-      //   // ['main_carouselFigure']
-      // });
-      let productList = await axios.post(`${store.state.aiuAPI}/rest/api/product/v1/query/list`,{
-        asc:true,
-        sortName:"sortForHome",
-        // request:{
-        //   name:'',
-        //   title:"test"
-        // }
-      })
+      let banner = await axios.post(`${store.state.aiuAPI}/rest/api/display/v1/find-by-keys`,
+        ['main_carouselFigure']
+      );
+      // let productList = await axios.post(`${store.state.aiuAPI}/rest/api/product/v1/query/list`,{
+      //   asc:true,
+      //   sortName:"sortForHome",
+      // })
       let appList = await axios.get(`${store.state.aiuAPI}/rest/api/app/v1/list/all`)
       return {
         metaData: metaData.data,
-        // banner:banner.data,
-        productList:productList.data.data.list,
+        banner:banner.data.data.main_carouselFigure.pictures,
+        // productList:productList.data.data.list,
         appList:appList.data.data
         // backgroundList:background.data.data.list
       } 
     },
+    computed: {
+			...mapState(['productList'])
+		},
     methods: {
-
+      shopLink(item){
+        window.open(item.mallLink,'_target')
+      },
+      watchVideo(item){
+        this.videoUrl = this.$store.state.aiuSRC+item.video.filePath
+        this.videoModal = true
+        console.log('this.videoUrl',this.videoUrl)
+      },
+      closeModal(){
+        this.videoModal = false
+      }
     },
     mounted(){
 
@@ -296,5 +315,18 @@
     color: #35495e;
     letter-spacing: 1px;
   }
-  
+  #videoPop{
+        width: 100%;
+    height: 100%;
+    float: left;
+    position: fixed;
+    top: 0;
+    left: 0;
+    background-color: rgba(0,0,0,0.7);
+    z-index: 999999999;
+  }
+  .box{
+    height: 100%;
+    position: relative;
+  }
 </style>

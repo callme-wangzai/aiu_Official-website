@@ -3,6 +3,8 @@ import NuxtLoading from './components/nuxt-loading.vue'
 
 import '../assets/css/reset.css'
 
+import '../node_modules/video.js/dist/video-js.css'
+
 
 let layouts = {
 

@@ -2,37 +2,14 @@
 	<header class="v-header clearfix">
 		<div id="index-header" class="fixedTop">
 			<div class="index-header-box">
-				<!-- <div class="i-h-top">
-					<div class="h-t-contact">
-						<nuxt-link to="/service/contact">联系方式</nuxt-link><nuxt-link to="/join">招商加盟</nuxt-link><span>欢迎您进入<h1>卫诗理</h1>官网！</span>
-					</div>
-					<div class="h-t-logo">
-						<nuxt-link to="/">
-							<img src="~/assets/images/index/TThome-logo.png" alt="卫诗理">
-						</nuxt-link>
-					</div>
-					<div class="h-t-mobile">
-						<div class="t-m-reg">
-							<a href="#">注册</a>
-						</div>
-						<div class="t-m-login">
-							<a href="#">登录</a>
-						</div>
-						<div class="t-m-mobile" @click="showCode">
-							<a href="#">移动版</a>
-						</div>
-						<div class="t-m-mobile-code" v-if="isShowCode">
-							<img src="~/assets/images/index/index-mobile.png" alt="卫诗理">
-						</div>
-					</div>
-					
-				</div> -->
 				<nuxt-link to="/">
 					<img class="h-t-logo" src="~/assets/images/index/logo.png" alt="爱柚">
 				</nuxt-link>
 				<div class="i-h-nav">
 					<ul class="h-nav-list">
-						<li><nuxt-link class="titleLink" to="/">首页</nuxt-link></li>
+						<li @mouseover="selectStyle" @mouseout="outStyle">
+							<nuxt-link class="titleLink" to="/">首页</nuxt-link>
+						</li>
 						<li>
 							<nuxt-link class="titleLink" to="/brand">产品和服务</nuxt-link>
 						</li>
@@ -42,54 +19,14 @@
 						<li>
 							<nuxt-link class="titleLink" to="/experice">关于爱柚</nuxt-link>
 						</li>
-						<!-- <li>
-							<nuxt-link target="_blank" to="/prod">产品介绍</nuxt-link>
-							<ul class="h-nav-list-child h-nav-list-childProd">
-								<li>
-									<nuxt-link target="_blank" to="/prod/newPro">最新产品</nuxt-link>
-									<nuxt-link target="_blank" to="/prod/newPro">全部</nuxt-link>
-								</li>
-								<li v-for="(item,index) in headProdNav" :key="index" v-if="item.proCategoryId != 96 && item.proCategoryId != 97">
-									<nuxt-link target="_blank" :to="{name: 'prod-typeId',params: {typeId: item.proCategoryId}}">{{item.proCategoryName}}</nuxt-link>
-									<nuxt-link target="_blank" :to="{name: 'prod-typeId',params: {typeId: item.proCategoryId}}">全部</nuxt-link>
-									<ul class="nav-childProd">
-										<li  v-for="(list,index) in headProdNav[index].children" :key="index">
-											<nuxt-link target="_blank" :to="{name: 'prod-typeId',params: {typeId: item.proCategoryId},query: {classId: list.proCategoryId}}">{{list.proCategoryName}}</nuxt-link>
-										</li>
-									</ul>
-								</li>
-							</ul>
-						</li>
-						<li>
-							<nuxt-link target="_blank" to="/news">新闻资讯</nuxt-link>
-							<ul class="h-nav-list-child h-nav-list-childNews">
-								<li v-for="item in headNewsNav" :key="item.articleCategoryId">
-									<nuxt-link target="_blank" :to="{name: 'news-category',params: {category: item.articleCategoryId}}">{{item.articleCategoryName}}</nuxt-link>
-								</li>
-							</ul>
-						</li>
-						<li>
-							<nuxt-link to="/join">招商加盟</nuxt-link>
-						</li>						
-						<li>
-							<nuxt-link to="/service/contact">服务中心</nuxt-link>
-							<ul class="h-nav-list-child">
-								<li><nuxt-link to="/service/presales">售前服务</nuxt-link></li>
-								<li><nuxt-link to="/service/aftersales">售后服务</nuxt-link></li>
-								<li><nuxt-link to="/service/contact">联系我们</nuxt-link></li>
-								<li><nuxt-link to="/service/questions">常见问题</nuxt-link></li>
-							</ul>
-						</li>
-						<li>
-							<nuxt-link to="/job">招聘中心</nuxt-link>
-							<ul class="h-nav-list-child h-nav-list-childNews">
-								<li v-for="item in headJobNav" :key="item.jobClassId">
-									<nuxt-link :to="{name: 'job-classId',params: {classId: item.jobClassId}}">{{item.jobClassName}}</nuxt-link>
-								</li>
-							</ul>
-						</li> -->
 					</ul>		
 				</div>
+			</div>
+		</div>
+		<div v-show="menuShow" @mouseover="selectStyle" @mouseout="outStyle" class="menuBar">
+			<div class="menu" v-for="(item,index) in productList" :key="index" @click="linkTo(item,index)">
+				<div class="menu-name">{{item.name}}</div>
+				<img :src="$store.state.aiuSRC+item.files[0].filePath" alt="">
 			</div>
 		</div>
 	</header>
@@ -104,11 +41,12 @@
 			return {
 				headFixed:false,
 				maxClientWidth: 980,
-				isShowCode: false
+				isShowCode: false,
+				menuShow:false
 			}
 		},
 		computed: {
-			...mapState(['headProdNav','headNewsNav','headJobNav'])
+			...mapState(['productList','headNewsNav','headJobNav'])
 		},
 		mounted (){
 			
@@ -127,6 +65,24 @@
 			},
 			showCode (){
 				this.isShowCode = !this.isShowCode
+			},
+			selectStyle(){
+				this.menuShow = true
+			},
+			outStyle(){
+				this.menuShow = false
+			},
+			linkTo(item,index){
+				let el = document.getElementById(`product${index}`)
+				if(el){
+					document.documentElement.scrollTop = el.offsetTop - 80
+				}else{
+					this.$router.push('/')
+					setTimeout(()=>{
+						let el = document.getElementById(`product${index}`)
+						document.documentElement.scrollTop = el.offsetTop - 80
+					},500)
+				}
 			}
 		},
 		destroyed (){
@@ -158,27 +114,29 @@
 	    box-sizing:  border-box;
 	}
 
-	.i-h-top {
-	    position: relative;
-	    width: 100%;
-	    min-width: 1200px;
-	    height:  81px;
-	    margin-top: 15px;
+	.menuBar{
+		width: 100%;
+		/* height:100px; */
+		padding:10px 0;
+		background: #fff;
+		position:  fixed;
+		top:80px;
+		z-index: 666;
+		display: flex;
+		justify-content: center;
 	}
-
-	.h-t-contact {
-	    float:  left;
-	    height:  45px;
-	    margin-left: 66px;
-	    color:  #a2a1a2;
-	    font-size:  12px;
-	    text-align: center;
-	    line-height:  45px;
+	.menuBar .menu{
+		margin:0 20px;
+		cursor: pointer;
 	}
-
-	.h-t-contact h1 {
-		display: inline-block;
-		font-weight: normal;
+	.menuBar .menu .menu-name{
+		text-align: center;
+		margin:10px 0;
+		color:#6d6d6d;
+	}
+	.menuBar .menu>img{
+		width: 150px;
+		height: 100px;
 	}
 
 	.h-t-logo {
@@ -195,45 +153,6 @@
 	    margin-left: -40px; */
 	}
 
-	.h-t-mobile {
-		position: relative;
-	    float:  right;
-	    height: 45px;
-	    margin-right: 66px;
-	    font-size: 12px;
-	    text-align: center;
-	    line-height: 45px;
-	}
-
-	.h-t-contact>span {
-	    padding: 0 10px;
-	}
-
-	.h-t-contact>a {
-	    padding: 0 10px;
-		color:  #a2a1a2;
-	}
-
-	.t-m-mobile-code {
-		position: absolute;
-		top: 45px;
-		right: 0;
-		width: 100px;
-		height: 100px;
-	}
-
-	.t-m-mobile-code img {
-		width: 100%;
-	}
-
-	.h-t-mobile>div {
-	    float:  left;
-	    padding:  0 12px;
-	}
-
-	.h-t-mobile>div>a {
-	    color: #a2a1a2;
-	}
 	.i-h-nav {
 	    width:  1200px;
 	    height:  80px;
@@ -254,6 +173,9 @@
 	    position: relative;
 	    display:  inline-block;
 	    padding: 0 23px;
+	}
+	.h-nav-list .titleLink:hover{
+		color:orange;
 	}
 
 	.h-nav-list>li>a {

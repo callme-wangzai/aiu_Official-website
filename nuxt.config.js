@@ -30,7 +30,7 @@ module.exports = {
       {src: 'http://api.map.baidu.com/api?v=2.0&ak=MDdqxkqhQzfdBzfu2tfGiidGbHgTfGrB'}
     ]
   },
-  css:['~assets/css/reset.css'],
+  css:['~assets/css/reset.css','video.js/dist/video-js.css'],
   /*
   ** Customize the progress bar color
   */
@@ -99,11 +99,11 @@ module.exports = {
   },
   plugins: [
     { src: "~plugins/vueLazyLoad", ssr: false },
-    // { src: "~plugins/vue-awesome-swiper", ssr: false },
     {
       src: "@/plugins/vue-awesome-swiper",
       ssr: false
-    }
+    },
+    { src: '@/plugins/vue-video.js', ssr: false }
   ]
  
 }
