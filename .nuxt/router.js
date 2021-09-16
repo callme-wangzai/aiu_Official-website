@@ -10,11 +10,6 @@ const _7281224d = () => import('../pages/join/index.vue' /* webpackChunkName: "p
 const _3cd1fd6c = () => import('../pages/leader/index.vue' /* webpackChunkName: "pages/leader/index" */).then(m => m.default || m)
 const _05eede94 = () => import('../pages/news/index.vue' /* webpackChunkName: "pages/news/index" */).then(m => m.default || m)
 const _3310578c = () => import('../pages/prod/index.vue' /* webpackChunkName: "pages/prod/index" */).then(m => m.default || m)
-const _375f83f0 = () => import('../pages/sitemap/index.vue' /* webpackChunkName: "pages/sitemap/index" */).then(m => m.default || m)
-const _45baf41a = () => import('../pages/experice/bt/index.vue' /* webpackChunkName: "pages/experice/bt/index" */).then(m => m.default || m)
-const _d2ee017c = () => import('../pages/experice/cd/index.vue' /* webpackChunkName: "pages/experice/cd/index" */).then(m => m.default || m)
-const _5ce8bce4 = () => import('../pages/experice/dg/index.vue' /* webpackChunkName: "pages/experice/dg/index" */).then(m => m.default || m)
-const _68874add = () => import('../pages/experice/nj/index.vue' /* webpackChunkName: "pages/experice/nj/index" */).then(m => m.default || m)
 const _4529d146 = () => import('../pages/job/search/index.vue' /* webpackChunkName: "pages/job/search/index" */).then(m => m.default || m)
 const _cc309810 = () => import('../pages/prod/newPro/index.vue' /* webpackChunkName: "pages/prod/newPro/index" */).then(m => m.default || m)
 const _f434f72c = () => import('../pages/service/aftersales.vue' /* webpackChunkName: "pages/service/aftersales" */).then(m => m.default || m)
@@ -122,31 +117,6 @@ export function createRouter () {
 			path: "/prod",
 			component: _3310578c,
 			name: "prod"
-		},
-		{
-			path: "/sitemap",
-			component: _375f83f0,
-			name: "sitemap"
-		},
-		{
-			path: "/experice/bt",
-			component: _45baf41a,
-			name: "experice-bt"
-		},
-		{
-			path: "/experice/cd",
-			component: _d2ee017c,
-			name: "experice-cd"
-		},
-		{
-			path: "/experice/dg",
-			component: _5ce8bce4,
-			name: "experice-dg"
-		},
-		{
-			path: "/experice/nj",
-			component: _68874add,
-			name: "experice-nj"
 		},
 		{
 			path: "/job/search",

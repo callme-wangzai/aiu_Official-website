@@ -5,7 +5,7 @@ module.exports = {
   ** Headers of the page
   */
   head: {
-    title: 'visney',
+    title: 'aiu',
     meta: [
       { name: 'renderer', content: 'webkit'},
       { name: 'force-rendering', content: 'webkit'},
@@ -73,30 +73,7 @@ module.exports = {
     prefetch: false
   },
   modules: [
-    // 'nuxt-robots-module',
-    '@nuxtjs/sitemap',
   ],
-  //添加robots.txt文件，可以使用插件方法也可以直接在static文件夹中放入robots.txt都可以访问到
-  // 'nuxt-robots-module': {
-  //   UserAgent: '*',
-  //   Disallow: '/',
-  //   Sitemap: 'http://www.visney.cn/sitemap.xml'
-  // },
-  sitemap: {
-    cacheTime: 1000 * 60 * 60 * 24,
-    gzip: false,
-    generate: true,
-    routes () {
-      return  axios.get('http://visney.cn:81/product/selectAllIds')
-      .then(res => res.data.map(
-        prodView => '/prod/pdV/' + prodView.id + '?typeId=' + prodView.typeId + '&classId=' + prodView.classId
-      ))
-      // axios.get('http://visney.cn:81/article/selectAllIds')
-      // .then(res => res.data.map(
-      //   newsView => '/news/newsView/' + newsView.articleId + '?category=' + newsView.category
-      // ))
-    }
-  },
   plugins: [
     { src: "~plugins/vueLazyLoad", ssr: false },
     {

@@ -75,8 +75,6 @@
 				<div class="footer-bottom">
 					<p>Copyright © 2018 深圳市爱柚数字智能有限公司</p>
 					<p>粤ICP备16080000号-2</p>
-					<!-- <p><a href="/sitemap.xml">蜘蛛地图</a></p>
-					<p><a href="/sitemap">网站地图</a></p> -->
 				</div>
 			</div>
 		</div>
