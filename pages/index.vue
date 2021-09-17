@@ -17,11 +17,11 @@
             <div class="img-video">
               <img v-lazy="$store.state.aiuSRC+item.files[0].filePath" alt="">
               <img v-lazy="$store.state.aiuSRC+item.files[1].filePath" alt="">
-              <img v-lazy="$store.state.aiuSRC+item.files[1].filePath" alt="">
+              <img v-lazy="$store.state.aiuSRC+item.files[2].filePath" alt="">
               <!-- <audio v-lazy="$store.state.aiuSRC+item.video.filePath"></audio> -->
             </div>
           </div>
-          <img class="product-img" v-if="item.carouselFigure[0]" v-lazy="$store.state.aiuSRC+item.carouselFigure[0].filePath" alt="">
+          <img class="product-img" v-if="item.backgrounds[0]" v-lazy="$store.state.aiuSRC+item.carouselFigure[0].filePath" alt="">
         </div>
         <div class="product type2" v-if="item.renderType===2">
           <div class="product-all">
@@ -37,12 +37,12 @@
               </div>
             </div>
             <div class="img-video">
-              <img v-lazy="$store.state.aiuSRC+item.files[0].filePath" alt="">
               <img v-lazy="$store.state.aiuSRC+item.files[1].filePath" alt="">
-              <img v-lazy="$store.state.aiuSRC+item.files[1].filePath" alt="">
+              <img v-lazy="$store.state.aiuSRC+item.files[2].filePath" alt="">
+              <img v-lazy="$store.state.aiuSRC+item.files[3].filePath" alt="">
             </div>
           </div>
-          <img class="product-img" v-if="item.carouselFigure[0]" v-lazy="$store.state.aiuSRC+item.carouselFigure[0].filePath" alt="">
+          <img class="product-img" v-if="item.backgrounds[0]" v-lazy="$store.state.aiuSRC+item.carouselFigure[0].filePath" alt="">
         </div>
         <!-- <div class="product type3" v-if="index%3===2">
           <div class="product-all">{{item.name}}</div>
@@ -68,7 +68,7 @@
             </div>
             
           </div>
-          <img class="product-img" v-if="item.carouselFigure[0]" v-lazy="$store.state.aiuSRC+item.carouselFigure[0].filePath" alt="">
+          <img class="product-img" v-if="item.backgrounds[0]" v-lazy="$store.state.aiuSRC+item.carouselFigure[0].filePath" alt="">
         </div>
         
       </div>

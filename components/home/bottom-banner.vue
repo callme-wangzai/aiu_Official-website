@@ -39,7 +39,7 @@
 		},
 		data (){
 			return {
-                imageUrl: require("~/assets/images/index/TThome-logo.png"),
+                imageUrl: require("~/static/favicon.jpeg"),
                 weixinCode:'www.weixin.com',
                 appCode:'www.aiyou.com'
 

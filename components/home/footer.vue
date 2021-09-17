@@ -73,8 +73,8 @@
 					</div>
 				</div>
 				<div class="footer-bottom">
-					<p>Copyright © 2018 深圳市爱柚数字智能有限公司</p>
-					<p>粤ICP备16080000号-2</p>
+					<p>Copyright © 2021 深圳市爱柚数字智能有限公司</p>
+					<p>粤ICP备2021129996号</p>
 				</div>
 			</div>
 		</div>
@@ -92,7 +92,7 @@
 	    width: 1200px;
 	    height: auto;
 	    margin: 0 auto;
-	    padding-bottom: 30px;
+	    /* padding-bottom: 30px; */
 	}
 	.footer-top{
 		display: flex;
@@ -133,7 +133,7 @@
 	    overflow:  hidden;
 	    /* width:  100%; */
 	    height:  auto;
-	    padding-bottom: 42px;
+	    padding-bottom: 12px;
 	    background: #000;
 	}
 
