@@ -24,15 +24,15 @@
 								</li>
 								<li class="footer-nav-list">
 									<nuxt-link target="_blank" to="/">商城</nuxt-link>
-									<ul class="footer-nav-child footer-nav-childNews">
+									<!-- <ul class="footer-nav-child footer-nav-childNews">
 										<li v-for="(item,index) in productList" :key="index"><a target="_blank" :href="item.mallLink">{{item.name}}</a></li>
-									</ul>
+									</ul> -->
 								</li>
 								<li class="footer-nav-list">
-									<nuxt-link target="_blank" to="/prod">APP</nuxt-link>
+									<nuxt-link target="_blank" to="/brand">APP</nuxt-link>
 									<ul class="footer-nav-child footer-nav-childProd">
 										<li>
-											<nuxt-link target="_blank" to="/prod">APP</nuxt-link>
+											<nuxt-link target="_blank" to="/brand">APP</nuxt-link>
 										</li>
 										<!-- <li v-for="(item,index) in headProdNav" :key="index" v-if="index<4">
 											<nuxt-link target="_blank" :to="{name: 'prod-typeId',params: {typeId: item.proCategoryId}}">{{item.proCategoryName}}</nuxt-link>

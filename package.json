@@ -1,7 +1,7 @@
 {
-  "name": "aiu",
+  "name": "aiu_official_website",
   "version": "1.0.0",
-  "description": "Nuxt.js project",
+  "description": "aiu_official",
   "author": "chenjin",
   "private": true,
   "scripts": {

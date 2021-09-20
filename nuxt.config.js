@@ -24,7 +24,7 @@ module.exports = {
       { name: 'shenma-site-verification', content: '15230d9dfb2e66bfecf2408862f2462c_1537497601' }
     ],
     link: [
-      { rel: 'icon', type: 'image/x-icon', href: '/favicon.jpeg' }
+      { rel: 'icon', type: 'image/x-icon', href: '/favicon.ico' }
     ],
     script: [
       {src: 'http://api.map.baidu.com/api?v=2.0&ak=MDdqxkqhQzfdBzfu2tfGiidGbHgTfGrB'}

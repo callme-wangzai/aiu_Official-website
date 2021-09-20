@@ -10,7 +10,7 @@
               <div class="name">{{item.name}}</div>
               <div class="desc">{{item.desc}}</div>
               <div class="link">
-                <a @click="watchVideo(item)">观看视频 ></a>
+                <a v-if="item.video&&item.video.filePath" @click="watchVideo(item)">观看视频 ></a>
                 <a @click="shopLink(item)">立即购买 ></a>
               </div>
             </div>
@@ -31,15 +31,15 @@
                 <div class="name">{{item.name}}</div>
                 <div class="desc">{{item.desc}}</div>
                 <div class="link">
-                  <a @click="watchVideo(item)">观看视频 ></a>
+                  <a v-if="item.video&&item.video.filePath" @click="watchVideo(item)">观看视频 ></a>
                   <a @click="shopLink(item)">立即购买 ></a>
                 </div>
               </div>
             </div>
             <div class="img-video">
-              <img v-lazy="$store.state.aiuSRC+item.files[1].filePath" alt="">
-              <img v-lazy="$store.state.aiuSRC+item.files[2].filePath" alt="">
-              <img v-lazy="$store.state.aiuSRC+item.files[3].filePath" alt="">
+              <img v-if="item.files[1]&&item.files[1].filePath" v-lazy="$store.state.aiuSRC+item.files[1].filePath" alt="">
+              <img v-if="item.files[2]&&item.files[2].filePath" v-lazy="$store.state.aiuSRC+item.files[2].filePath" alt="">
+              <img v-if="item.files[3]&&item.files[3].filePath" v-lazy="$store.state.aiuSRC+item.files[3].filePath" alt="">
             </div>
           </div>
           <img class="product-img" v-if="item.backgrounds[0]" v-lazy="$store.state.aiuSRC+item.carouselFigure[0].filePath" alt="">
@@ -55,7 +55,7 @@
                 <div class="name">{{item.name}}</div>
                 <div class="desc">{{item.desc}}</div>
                 <div class="link">
-                  <a @click="watchVideo(item)">观看视频 ></a>
+                  <a v-if="item.video&&item.video.filePath" @click="watchVideo(item)">观看视频 ></a>
                   <a @click="shopLink(item)">立即购买 ></a>
                 </div>
               </div>
