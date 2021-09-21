@@ -196,6 +196,8 @@
     font-size: 18px;
     font-weight: 100;
     width:50%;
+    /* text-indent : 32px; */
+    letter-spacing: 2px;
   }
   .product-all .main .link{
     font-size: 14px;
@@ -249,6 +251,8 @@
     font-weight: 100;
     font-size:18px;
     margin-top:20px;
+    /* text-indent : 32px; */
+    letter-spacing: 2px;
   } 
   .type2 .product-all .main .link{
     justify-content:center;
@@ -291,6 +295,8 @@
     font-size: 18px;
     font-weight: 100;
     margin-top:10px;
+    /* text-indent : 32px; */
+    letter-spacing: 2px
   }
   .type3 .product-all .main .link{
     margin-top:10px;

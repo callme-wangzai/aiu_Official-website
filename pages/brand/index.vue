@@ -7,14 +7,23 @@
 			<img class="h-t-logo logo-r" src="~/assets/images/index/logo_white2.png" alt="爱柚">
 		</div>
 
-		<div class="course-list">
-			<ul>
-				<li class="course" v-for="(item,index) in courseList" :key="index">
-					<img :src="$store.state.aiuSRC+item.filePath" alt="">
-				</li>
-			</ul>
-
-		</div>	
+		<div class="course-list" v-swiper:mySwiper="swiperOption">
+			<!-- 有传参进来 -->
+			<div v-if="courseList.length>0" class="swiper-wrapper">
+				<div class="course swiper-slide" v-for="(banner,index) in courseList" :key="index">
+					<img :src="$store.state.aiuSRC+banner.filePath">
+				</div>
+			</div>
+			<!-- 无传参，用本地 -->
+			<!-- <div v-else class="swiper-wrapper">
+				<div class="swiper-slide" v-for="(banner,index) in swiperData" :key="index">
+					<img :src="banner.imgUrl">
+				</div>
+			</div> -->
+			<div class="swiper-pagination"></div>
+			<div class="swiper-button-prev swiper-button-white"></div>
+			<div class="swiper-button-next swiper-button-white"></div>
+		</div>
 
 		<div class="intelligent-data">
 			<img :src="$store.state.aiuSRC+item.filePath" alt="" v-for="(item,index) in IntelligentData" :key="index">
@@ -33,6 +42,18 @@
 	export default {
 		data (){
 			return {
+				swiperOption: {
+					// pagination: {
+					// 	el: ".swiper-pagination",
+					// 	clickable: true ,//允许分页点击跳转
+					// },
+					navigation: {
+						nextEl: ".swiper-button-next",
+						prevEl: ".swiper-button-prev"
+					},
+					slidesPerView : 3,
+					spaceBetween : 20,
+				}
 			}
 		},
 		components: {
@@ -89,11 +110,7 @@
 	.course-list{
 		width:100%;
 		overflow-x: auto;
-	}
-	.course-list>ul{
-		width:20000px;
-		display: flex;
-    	
+		margin:20px 0px;
 	}
 	.course{
 		width:446px;
