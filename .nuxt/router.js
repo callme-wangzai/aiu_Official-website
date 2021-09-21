@@ -5,24 +5,7 @@ Vue.use(Router)
 
 const _d9d8874c = () => import('../pages/brand/index.vue' /* webpackChunkName: "pages/brand/index" */).then(m => m.default || m)
 const _7a80df24 = () => import('../pages/experice/index.vue' /* webpackChunkName: "pages/experice/index" */).then(m => m.default || m)
-const _1993ff10 = () => import('../pages/job/index.vue' /* webpackChunkName: "pages/job/index" */).then(m => m.default || m)
-const _7281224d = () => import('../pages/join/index.vue' /* webpackChunkName: "pages/join/index" */).then(m => m.default || m)
 const _3cd1fd6c = () => import('../pages/leader/index.vue' /* webpackChunkName: "pages/leader/index" */).then(m => m.default || m)
-const _05eede94 = () => import('../pages/news/index.vue' /* webpackChunkName: "pages/news/index" */).then(m => m.default || m)
-const _3310578c = () => import('../pages/prod/index.vue' /* webpackChunkName: "pages/prod/index" */).then(m => m.default || m)
-const _4529d146 = () => import('../pages/job/search/index.vue' /* webpackChunkName: "pages/job/search/index" */).then(m => m.default || m)
-const _cc309810 = () => import('../pages/prod/newPro/index.vue' /* webpackChunkName: "pages/prod/newPro/index" */).then(m => m.default || m)
-const _f434f72c = () => import('../pages/service/aftersales.vue' /* webpackChunkName: "pages/service/aftersales" */).then(m => m.default || m)
-const _664a8cd6 = () => import('../pages/service/contact.vue' /* webpackChunkName: "pages/service/contact" */).then(m => m.default || m)
-const _210c2803 = () => import('../pages/service/presales.vue' /* webpackChunkName: "pages/service/presales" */).then(m => m.default || m)
-const _48b987fa = () => import('../pages/service/questions.vue' /* webpackChunkName: "pages/service/questions" */).then(m => m.default || m)
-const _58793e6b = () => import('../pages/job/jobView/_id.vue' /* webpackChunkName: "pages/job/jobView/_id" */).then(m => m.default || m)
-const _0689188f = () => import('../pages/news/newsView/_id.vue' /* webpackChunkName: "pages/news/newsView/_id" */).then(m => m.default || m)
-const _39e5be16 = () => import('../pages/prod/pdV/_id.vue' /* webpackChunkName: "pages/prod/pdV/_id" */).then(m => m.default || m)
-const _59d600ae = () => import('../pages/job/_classId/index.vue' /* webpackChunkName: "pages/job/_classId/index" */).then(m => m.default || m)
-const _2b3976f8 = () => import('../pages/news/_category/index.vue' /* webpackChunkName: "pages/news/_category/index" */).then(m => m.default || m)
-const _21dbaeff = () => import('../pages/prod/_typeId/index.vue' /* webpackChunkName: "pages/prod/_typeId/index" */).then(m => m.default || m)
-const _6c778720 = () => import('../pages/service/_id.vue' /* webpackChunkName: "pages/service/_id" */).then(m => m.default || m)
 const _0c6d3a3c = () => import('../pages/index.vue' /* webpackChunkName: "pages/index" */).then(m => m.default || m)
 
 
@@ -94,94 +77,9 @@ export function createRouter () {
 			name: "experice"
 		},
 		{
-			path: "/job",
-			component: _1993ff10,
-			name: "job"
-		},
-		{
-			path: "/join",
-			component: _7281224d,
-			name: "join"
-		},
-		{
 			path: "/leader",
 			component: _3cd1fd6c,
 			name: "leader"
-		},
-		{
-			path: "/news",
-			component: _05eede94,
-			name: "news"
-		},
-		{
-			path: "/prod",
-			component: _3310578c,
-			name: "prod"
-		},
-		{
-			path: "/job/search",
-			component: _4529d146,
-			name: "job-search"
-		},
-		{
-			path: "/prod/newPro",
-			component: _cc309810,
-			name: "prod-newPro"
-		},
-		{
-			path: "/service/aftersales",
-			component: _f434f72c,
-			name: "service-aftersales"
-		},
-		{
-			path: "/service/contact",
-			component: _664a8cd6,
-			name: "service-contact"
-		},
-		{
-			path: "/service/presales",
-			component: _210c2803,
-			name: "service-presales"
-		},
-		{
-			path: "/service/questions",
-			component: _48b987fa,
-			name: "service-questions"
-		},
-		{
-			path: "/job/jobView/:id?",
-			component: _58793e6b,
-			name: "job-jobView-id"
-		},
-		{
-			path: "/news/newsView/:id?",
-			component: _0689188f,
-			name: "news-newsView-id"
-		},
-		{
-			path: "/prod/pdV/:id?",
-			component: _39e5be16,
-			name: "prod-pdV-id"
-		},
-		{
-			path: "/job/:classId",
-			component: _59d600ae,
-			name: "job-classId"
-		},
-		{
-			path: "/news/:category",
-			component: _2b3976f8,
-			name: "news-category"
-		},
-		{
-			path: "/prod/:typeId",
-			component: _21dbaeff,
-			name: "prod-typeId"
-		},
-		{
-			path: "/service/:id?",
-			component: _6c778720,
-			name: "service-id"
 		},
 		{
 			path: "/",

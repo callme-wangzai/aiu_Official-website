@@ -64,14 +64,12 @@
 		  return {
 		    title:'产品和服务',
 		    meta: [
-		      {name:'keywords',hid: 'keywords',content:`${this.metaData.navigationKeyword}`},
-		      {name:'description',hid:'description',content:`${this.metaData.navigationDescription}`}
-		    ]
+          {name:'keywords',hid: 'keywords',content:`云麦,YUNMAI,好轻,云麦筋膜枪,云麦智能手表,云麦智能跳绳,云麦体脂秤,云麦好轻,云麦好轻Pro,云麦好轻Color2,云麦好轻mini2,云麦腕力球,云麦弹力圈,云麦瑜伽垫,体脂秤,筋膜枪,瑜伽,腕力球,体脂称`},
+          {name:'description',hid:'description',content:`云麦科技旗下所有产品，包括云麦筋膜枪系列YUNMAI按摩筋膜枪PB、YUNMAI按摩筋膜枪SC，云麦体脂秤系列云麦好轻2、云麦好轻Pro、云麦好轻Color2、云麦好轻mini2，智能穿戴系列YUNMAI智能训练手表、YUNMAI智能跳绳，瑜伽系列瑜伽垫、瑜伽球、瑜伽砖、瑜伽柱、泡沫轴、瑜伽袜，运动服饰系列运动内衣、运动紧身裤等，运动装备系列运动跳绳、运动臂包、运动腰包、运动护膝、运动护肘、运动护腕、健力环、弹力带、阻力圈、握力圈等，同时提供云麦客户服务及售后支持`}
+        ]
 		  }
 		},
 		async asyncData({params,store}){
-		  //head信息
-		    let metaData = await axios(`${store.state.wordpressAPI}/NavigationMeta/get/2`);
 			let appList = await axios.get(`${store.state.aiuAPI}/rest/api/app/v1/list/all`)
 			let IntelligentData = await axios.post(`${store.state.aiuAPI}/rest/api/display/v1/find-by-keys`,
 				['intelligent_data']
@@ -80,7 +78,6 @@
 				['course_list']
 			);
 		  return {
-		    metaData: metaData.data,
 			appList:appList.data.data,
 			IntelligentData:IntelligentData.data.data.intelligent_data.pictures,
 			courseList:courseList.data.data.course_list.pictures

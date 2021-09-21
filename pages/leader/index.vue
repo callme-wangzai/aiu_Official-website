@@ -36,12 +36,6 @@
 		  }
 		},
         async asyncData({params,store}){
-            //首页head信息
-            let metaData = await axios(`${store.state.wordpressAPI}/NavigationMeta/get/1`);
-            //banner数据动态获取
-            // let banner = await axios.post(`${store.state.wordpressAPI}/rest/api/display/v1/find-by-keys`,{
-            //   // ['main_carouselFigure']
-            // });
             let productList = await axios.post(`${store.state.aiuAPI}/rest/api/product/v1/query/list`,{
                 asc:true,
                 sortName:"sortForMenu3",

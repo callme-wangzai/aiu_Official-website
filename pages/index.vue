@@ -127,8 +127,6 @@
       }
     },
     async asyncData({params,store}){
-      //首页head信息
-      let metaData = await axios(`${store.state.wordpressAPI}/NavigationMeta/get/1`);
       //banner数据动态获取
       let banner = await axios.post(`${store.state.aiuAPI}/rest/api/display/v1/find-by-keys`,
         ['main_carouselFigure']
@@ -139,7 +137,6 @@
       // })
       let appList = await axios.get(`${store.state.aiuAPI}/rest/api/app/v1/list/all`)
       return {
-        metaData: metaData.data,
         banner:banner.data.data.main_carouselFigure.pictures,
         // productList:productList.data.data.list,
         appList:appList.data.data

@@ -49,25 +49,6 @@
 						imgUrl:'http://47.106.86.150:8083/img/picture/aba2d8494a8d4f9bbfda31e776ce12c9_1631114275350.png',
 					}
 				],
-				// swiperOption: {
-				// 	loop: true,
-				// 	autoplay: {
-				// 	delay: 3000,
-				// 	stopOnLastSlide: false,
-				// 	disableOnInteraction: false
-				// 	},
-				// 	// 显示分页
-				// 	pagination: {
-				// 	el: ".swiper-pagination",
-				// 	clickable: true //允许分页点击跳转
-				// 	},
-				// 	// 设置点击箭头
-				// 	navigation: {
-				// 	nextEl: ".swiper-button-next",
-				// 	prevEl: ".swiper-button-prev"
-				// 	}
-				// },
-				banners: [ 'http://47.106.86.150:8083/img/picture/aba2d8494a8d4f9bbfda31e776ce12c9_1631114275350.png', 'http://47.106.86.150:8083/img/picture/aba2d8494a8d4f9bbfda31e776ce12c9_1631114275350.png', 'http://47.106.86.150:8083/img/picture/aba2d8494a8d4f9bbfda31e776ce12c9_1631114275350.png' ],
 				swiperOption: {
 					pagination: {
 						el: ".swiper-pagination",
