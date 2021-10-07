@@ -26,7 +26,7 @@
 		<div v-show="menuShow" @mouseover="selectStyle" @mouseout="outStyle" class="menuBar">
 			<div class="menu" v-for="(item,index) in productList" :key="index" @click="linkTo(item,index)">
 				<div class="menu-name">{{item.name}}</div>
-				<img :src="$store.state.aiuSRC+item.suspensions[0].filePath" alt="">
+				<img v-if="item.suspensions[0]&&item.suspensions[0].filePath" :src="$store.state.aiuSRC+item.suspensions[0].filePath" alt="">
 			</div>
 		</div>
 	</header>

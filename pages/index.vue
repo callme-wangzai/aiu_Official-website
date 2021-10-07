@@ -15,18 +15,18 @@
               </div>
             </div>
             <div class="img-video">
-              <img v-lazy="$store.state.aiuSRC+item.files[0].filePath" alt="">
-              <img v-lazy="$store.state.aiuSRC+item.files[1].filePath" alt="">
-              <img v-lazy="$store.state.aiuSRC+item.files[2].filePath" alt="">
+              <img v-if="item.files[0]&&item.files[0].filePath" v-lazy="$store.state.aiuSRC+item.files[0].filePath" alt="">
+              <img v-if="item.files[1]&&item.files[1].filePath" v-lazy="$store.state.aiuSRC+item.files[1].filePath" alt="">
+              <img v-if="item.files[2]&&item.files[2].filePath" v-lazy="$store.state.aiuSRC+item.files[2].filePath" alt="">
               <!-- <audio v-lazy="$store.state.aiuSRC+item.video.filePath"></audio> -->
             </div>
           </div>
-          <img class="product-img" v-if="item.backgrounds[0]" v-lazy="$store.state.aiuSRC+item.carouselFigure[0].filePath" alt="">
+          <img class="product-img" v-if="item.backgrounds[0]&&item.backgrounds[0].filePath" v-lazy="$store.state.aiuSRC+item.backgrounds[0].filePath" alt="">
         </div>
         <div class="product type2" v-if="item.renderType===2">
           <div class="product-all">
             <div class=type2-top>
-              <img v-lazy="$store.state.aiuSRC+item.files[0].filePath" alt="">
+              <img v-if="item.files[0]&&item.files[0].filePath" v-lazy="$store.state.aiuSRC+item.files[0].filePath" alt="">
               <div class="main">
                 <div class="name">{{item.name}}</div>
                 <div class="desc">{{item.desc}}</div>
@@ -42,12 +42,9 @@
               <img v-if="item.files[3]&&item.files[3].filePath" v-lazy="$store.state.aiuSRC+item.files[3].filePath" alt="">
             </div>
           </div>
-          <img class="product-img" v-if="item.backgrounds[0]" v-lazy="$store.state.aiuSRC+item.carouselFigure[0].filePath" alt="">
+          <img class="product-img" v-if="item.backgrounds[0]&&item.backgrounds[0].filePath" v-lazy="$store.state.aiuSRC+item.backgrounds[0].filePath" alt="">
         </div>
-        <!-- <div class="product type3" v-if="index%3===2">
-          <div class="product-all">{{item.name}}</div>
-          <img class="product-img" v-if="item.carouselFigure[0]" v-lazy="$store.state.aiuSRC+item.carouselFigure[0].filePath" alt="">
-        </div> -->
+
         <div class="product type3" v-if="item.renderType===3">
           <div class="product-all">
             <div class="contain">
@@ -60,15 +57,37 @@
                 </div>
               </div>
               <div class="img">
-                <img v-lazy="$store.state.aiuSRC+item.files[0].filePath" alt="">
+                <img v-if="item.files[0]&&item.files[0].filePath" v-lazy="$store.state.aiuSRC+item.files[0].filePath" alt="">
               </div>
               <div class="img">
-                <img v-lazy="$store.state.aiuSRC+item.files[1].filePath" alt="">
+                <img v-if="item.files[1]&&item.files[1].filePath" v-lazy="$store.state.aiuSRC+item.files[1].filePath" alt="">
               </div>
             </div>
             
           </div>
-          <img class="product-img" v-if="item.backgrounds[0]" v-lazy="$store.state.aiuSRC+item.carouselFigure[0].filePath" alt="">
+          <img class="product-img" v-if="item.backgrounds[0]&&item.backgrounds[0].filePath" v-lazy="$store.state.aiuSRC+item.backgrounds[0].filePath" alt="">
+        </div>
+
+        <div class="product type4" v-if="item.renderType===4">
+          <div class="product-all">
+            <div class=type4-top>
+              <!-- <img v-if="item.files[0]&&item.files[0].filePath" v-lazy="$store.state.aiuSRC+item.files[0].filePath" alt=""> -->
+              <div class="main">
+                <div class="name">{{item.name}}</div>
+                <div class="desc">{{item.desc}}</div>
+                <div class="link">
+                  <a v-if="item.video&&item.video.filePath" @click="watchVideo(item)">观看视频 ></a>
+                  <a @click="shopLink(item)">立即购买 ></a>
+                </div>
+              </div>
+            </div>
+            <div class="img-video">
+              <img v-if="item.files[0]&&item.files[0].filePath" v-lazy="$store.state.aiuSRC+item.files[0].filePath" alt="">
+              <img v-if="item.files[1]&&item.files[1].filePath" v-lazy="$store.state.aiuSRC+item.files[1].filePath" alt="">
+              <img v-if="item.files[2]&&item.files[2].filePath" v-lazy="$store.state.aiuSRC+item.files[2].filePath" alt="">
+            </div>
+          </div>
+          <img class="product-img" v-if="item.backgrounds[0]&&item.backgrounds[0].filePath" v-lazy="$store.state.aiuSRC+item.backgrounds[0].filePath" alt="">
         </div>
         
       </div>
@@ -173,6 +192,7 @@
   }
   .product{
     position:relative;
+    height:810px;
   }
   .product-all{
     position:absolute;
@@ -262,9 +282,6 @@
     align-items:center;
     padding: 0 157.5px;
     box-sizing: border-box;
-    /* position: absolute; */
-    /* height:100%; */
-    /* background:rgba(0, 0, 0, 0.6); */
   }
   .type2 .img-video>img,audio{
     width: 310.5px;
@@ -302,6 +319,46 @@
   .type3 .product-all .main .link>a{
     margin-left:20px;
     margin-right:20px;
+  }
+  .type4 .type4-top{
+    display: flex;
+    justify-content: center;
+    position:relative;
+    
+    padding: 100px 157.5px;
+    color:#fff;
+  }
+  .type4 .product-all .type4-top>img{
+    width: 442px;
+    height:352px;
+  }
+  .type4 .product-all .main{
+    width:500px;
+    text-align: center;
+  }
+  .type4 .product-all .main .desc{
+    font-weight: 100;
+    font-size:18px;
+    margin-top:20px;
+    /* text-indent : 32px; */
+    letter-spacing: 2px;
+  } 
+  .type4 .product-all .main .link{
+    justify-content:center;
+    margin-top:40px;
+  }
+  .type4 .img-video{
+    width:100%;
+    display: flex;
+    justify-content: space-between;
+    align-items:center;
+    padding: 0 157.5px;
+    box-sizing: border-box;
+  }
+  .type4 .img-video>img,audio{
+    width: 310.5px;
+    height:310.5px;
+    /* border-radius: 155.25px; */
   }
   .product-img{
     /* position:absolute; */

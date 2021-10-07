@@ -1,6 +1,6 @@
 <template>
 	<section class="container">
-			<img v-for="(item,index) in fileList" :key="index" :src="$store.state.aiuSRC+item.filePath" alt="">
+			<img v-if="item.filePath" v-for="(item,index) in fileList" :key="index" :src="$store.state.aiuSRC+item.filePath" alt="">
 	</section>
 </template>
 

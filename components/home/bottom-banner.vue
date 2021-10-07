@@ -8,12 +8,12 @@
             <div class="code">
                 <!-- 微信二维码 -->
                 <div class="code-detail">
-                <vue-qr :logoSrc="imageUrl" :text="appList[0].androidLink" :size="150"></vue-qr>
+                <vue-qr :logoSrc="imageUrl" :text="appList[0].androidLink?appList[0].androidLink:''" :size="150"></vue-qr>
                 <div class="code-name">微信二维码</div>
                 </div>
                 <!-- app二维码 -->
                 <div class="code-detail">
-                <vue-qr :logoSrc="imageUrl" :text="appList[0].iosLink" :size="150"></vue-qr>
+                <vue-qr :logoSrc="imageUrl" :text="appList[0].iosLink?appList[0].iosLink:''" :size="150"></vue-qr>
                 <div class="code-name">APP二维码</div>
                 </div>
             </div>
@@ -61,6 +61,7 @@
 <style scoped>
 	.banner{
     width:100%;
+    height:810px;
     position: relative;
   }
   .banner .banner-main{
@@ -100,6 +101,7 @@
   }
   .banner>img{
     width:100%;
+    height:810px;
     /* height: 100%; */
   }
 	

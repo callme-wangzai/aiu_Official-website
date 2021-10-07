@@ -4,7 +4,7 @@
 			<!-- 有传参进来 -->
 			<div v-if="banner.length>0" class="swiper-wrapper">
 				<div class="swiper-slide" v-for="(banner,index) in banner" :key="index">
-					<img :src="$store.state.aiuSRC+banner.filePath">
+					<img v-if="banner.filePath" :src="$store.state.aiuSRC+banner.filePath">
 				</div>
 			</div>
 			<!-- 无传参，用本地 -->

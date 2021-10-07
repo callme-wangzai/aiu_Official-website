@@ -11,7 +11,7 @@
 			<!-- 有传参进来 -->
 			<div v-if="courseList.length>0" class="swiper-wrapper">
 				<div class="course swiper-slide" v-for="(banner,index) in courseList" :key="index">
-					<img :src="$store.state.aiuSRC+banner.filePath">
+					<img v-if="banner.filePath" :src="$store.state.aiuSRC+banner.filePath">
 				</div>
 			</div>
 			<!-- 无传参，用本地 -->
@@ -26,7 +26,7 @@
 		</div>
 
 		<div class="intelligent-data">
-			<img :src="$store.state.aiuSRC+item.filePath" alt="" v-for="(item,index) in IntelligentData" :key="index">
+			<img v-if="item.filePath" :src="$store.state.aiuSRC+item.filePath" alt="" v-for="(item,index) in IntelligentData" :key="index">
 		</div>
 
 
@@ -764,163 +764,5 @@
 		}
 	/*品牌理念部分结束*/
 
-	/*品牌实力部分*/
-		div#brand-strength {
-		    width: 100%;
-		    height: auto;
-		}
-
-		.strength-content {
-		    width: 1200px;
-		    height: auto;
-		    margin: 0 auto;
-		}
-
-		.strength-content-first {
-		    overflow:  hidden;
-		    width: 100%;
-		    height: auto;
-		    padding: 162px 0 140px;
-		    text-align: center;
-		}
-
-		.strength-content-left {
-		    float:  left;
-		    overflow:  hidden;
-		    width:  434px;
-		    height: 700px;
-		}
-
-		.strength-content-right {
-		    float:  right;
-		    width:  600px;
-		    height:  auto;
-		    padding-left:  37px;
-		    box-sizing:  border-box;
-		}
-
-		.strength-content-titleC {
-		    overflow:  hidden;
-		    width:  100%;
-		    height: 40px;
-		    color: #22202b;
-		    font-size:  38px;
-        	font-family: 'Noto Serif CJK SC', 'Source Han Serif SC', 'Source Han Serif', 'source-han-serif-sc','STZhongsong','宋体', 'serif';
-        	font-weight: 900;	
-		    line-height: 40px;
-		    text-align:  left;
-		}
-
-		.strength-content-titleE {
-		    width:  100%;
-		    height:  auto;
-		    margin-top: 34px;
-		    color:  #6d6d6d;
-		    font-size:  14px;
-		    line-height: 16px;
-		    text-align:  left;
-		}
-
-		.strength-content-description {
-		    overflow:  hidden;
-		    width:  100%;
-		    height:  45px;
-		    margin-top: 105px;
-		    color: #22202b;
-		    font-size:  22px;
-		    line-height:  45px;
-		    text-align:  left;
-		}
-
-		.strength-content-intro {
-		    overflow:  hidden;
-		    width: 100%;
-		    height:  auto;
-		    margin-top: 90px;
-		    color:  #858585;
-		    font-size:  14px;
-		    line-height:  22px;
-		    text-align:  left;
-		}
-
-		.strength-content-box {
-		    width:  100%;
-		    height:  auto;
-		    padding-bottom: 240px;
-		}
-
-		.strength-content-box ul {
-		    overflow:  hidden;
-		    width:  100%;
-		    height:  auto;
-		}
-
-		.strength-content-box ul li {
-		    float:  left;
-		    width:  364px;
-		    height:  auto;
-		    margin-left: 54px;
-		}
-
-		.strength-content-box ul li:first-child {
-		    margin-left: 0px;
-		}
-
-		.strength-main {
-		    overflow:  hidden;
-		    width:  100%;
-		    height:  100%;
-		}
-
-		.strength-main-img{
-			cursor: pointer;
-			-webkit-transition: all 0.5s ease;
-	        -o-transition: all 0.5s ease;
-	        transition: all 0.5s ease;
-		}
-
-		.strength-main-imgcd {
-		    overflow:  hidden;
-		    width:  364px;
-		    height:  200px;
-		    background: url("~/assets/images/brand/strength-main-chengdu.png") center center no-repeat;
-		}
-
-		.strength-main-imgcd:hover{
-			background: url("~/assets/images/brand/strength-main-chengdu2.jpg") center center no-repeat;
-		}
-
-		.strength-main-imgnj {
-		    overflow:  hidden;
-		    width:  364px;
-		    height:  200px;
-		    background: url("~/assets/images/brand/strength-main-nanjing.png") center center no-repeat;
-		}
-
-		.strength-main-imgnj:hover{
-			background: url("~/assets/images/brand/strength-main-nanjing2.jpg") center center no-repeat;
-		}
-
-		.strength-main-imgdg {
-		    overflow:  hidden;
-		    width:  364px;
-		    height:  200px;
-		    background: url("~/assets/images/brand/strength-main-dongguan.png") center center no-repeat;
-		}
-
-		.strength-main-imgdg:hover{
-			background: url("~/assets/images/brand/strength-main-dongguan2.jpg") center center no-repeat;
-		}
-	
-		.strength-main-title {
-		    overflow:  hidden;
-		    width:  100%;
-		    height:  auto;
-		    padding-top: 10px;
-		    color:  #858585;
-		    font-size:  18px;
-		    line-height: 22px;
-		    text-align:  center;
-		}
 	/*品牌实力部分结束*/
 </style>
