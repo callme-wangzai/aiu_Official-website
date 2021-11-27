@@ -54,7 +54,11 @@
           this.headFixed = false;
         }
         let percent = scrollTop/304 >= 1 ? 1 : scrollTop/304
-        document.getElementById('index-header').style.backgroundColor = `rgba(0,0,0,${percent})`
+        if(window.location.pathname === "/experice" || window.location.pathname === "/brand"){
+          document.getElementById('index-header').style.backgroundColor = `rgba(0,0,0,1)`
+        }else{
+          document.getElementById('index-header').style.backgroundColor = `rgba(0,0,0,${percent})`
+        }
         let list = document.getElementsByClassName('titleLink')
         // if(scrollTop>152){
         //   for(let item of list){

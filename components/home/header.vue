@@ -1,19 +1,19 @@
 <template>
 	<header class="v-header clearfix">
-		<div id="index-header" class="fixedTop">
+		<div id="index-header" :class="`fixedTop ${headFixed?'black':''}`">
 			<div class="index-header-box">
 				<nuxt-link to="/">
 					<img class="h-t-logo" src="~/assets/images/index/logo.png" alt="爱柚">
 				</nuxt-link>
 				<div class="i-h-nav">
 					<ul class="h-nav-list">
-						<li @mouseover="selectStyle" @mouseout="outStyle">
+						<li >
 							<nuxt-link class="titleLink" to="/">首页</nuxt-link>
 						</li>
 						<li>
 							<nuxt-link class="titleLink" to="/brand">产品和服务</nuxt-link>
 						</li>
-						<li>
+						<li @mouseover="selectStyle" @mouseout="outStyle">
 							<nuxt-link class="titleLink" to="/leader">智能硬件</nuxt-link>
 						</li>
 						<li>
@@ -24,9 +24,13 @@
 			</div>
 		</div>
 		<div v-show="menuShow" @mouseover="selectStyle" @mouseout="outStyle" class="menuBar">
-			<div class="menu" v-for="(item,index) in productList" :key="index" @click="linkTo(item,index)">
+			<div class="menu" v-for="(item,index) in productList2" :key="index" @click="linkTo(item,index)">
 				<div class="menu-name">{{item.name}}</div>
 				<img v-if="item.suspensions[0]&&item.suspensions[0].filePath" :src="$store.state.aiuSRC+item.suspensions[0].filePath" alt="">
+			</div>
+			<!-- 了解更多 -->
+			<div class="menu" @click="linkToFour">
+				<img class="learn_more" src="~/assets/images/index/learn_more.png" alt="">
 			</div>
 		</div>
 	</header>
@@ -46,7 +50,7 @@
 			}
 		},
 		computed: {
-			...mapState(['productList','headNewsNav','headJobNav'])
+			...mapState(['productList2','headNewsNav','headJobNav'])
 		},
 		mounted (){
 			
@@ -57,29 +61,45 @@
 			handleScroll (){
 				var scrollTop = window.pageYOffset || document.documentElement.scrollTop || document.body.scrollTop;
 				var offsetTop = document.querySelector('.h-nav-list').offsetTop;
-				if (scrollTop > offsetTop) {
-					this.headFixed = true;
-				} else {
-					this.headFixed = false;
-				}
+				// if (scrollTop > offsetTop) {
+				// 	this.headFixed = true;
+				// } else {
+				// 	this.headFixed = false;
+				// }
 			},
 			showCode (){
 				this.isShowCode = !this.isShowCode
 			},
 			selectStyle(){
 				this.menuShow = true
+				this.headFixed = true;
+				console.log('select')
 			},
 			outStyle(){
 				this.menuShow = false
+				this.headFixed = false;
+				console.log('out')
 			},
 			linkTo(item,index){
-				let el = document.getElementById(`product${index}`)
+				let el = document.getElementById(`product_${index}`)
+				if(el){
+					document.documentElement.scrollTop = el.offsetTop - 80
+				}else{
+					this.$router.push('/leader')
+					setTimeout(()=>{
+						let el = document.getElementById(`product_${index}`)
+						document.documentElement.scrollTop = el.offsetTop - 80
+					},500)
+				}
+			},
+			linkToFour(){
+				let el = document.getElementById(`four`)
 				if(el){
 					document.documentElement.scrollTop = el.offsetTop - 80
 				}else{
 					this.$router.push('/')
 					setTimeout(()=>{
-						let el = document.getElementById(`product${index}`)
+						let el = document.getElementById(`four`)
 						document.documentElement.scrollTop = el.offsetTop - 80
 					},500)
 				}
@@ -137,6 +157,9 @@
 	.menuBar .menu>img{
 		width: 150px;
 		height: 100px;
+	}
+	.menu .learn_more{
+		margin-top:30px;
 	}
 
 	.h-t-logo {
@@ -309,5 +332,8 @@
 	.h-nav-list-childNews li a.nuxt-link-active {
 	    color: #6d6d6d;
 	    border: none;
+	}
+	.black{
+		background-color:rgba(0,0,0,1)!important;
 	}
 </style>

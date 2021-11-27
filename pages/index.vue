@@ -4,29 +4,9 @@
       <VBanner :banner="banner"></VBanner>
       <!-- 产品展示 -->
       <div :id="'product'+index" v-for="(item,index) in productList" :key="index">
-        <div class="product type1" v-if="item.renderType===1">
+        <div class="product type1" v-if="(index+1)%4===3">
           <div class="product-all">
-            <div class="main">
-              <div class="name">{{item.name}}</div>
-              <div class="desc">{{item.desc}}</div>
-              <div class="link">
-                <a v-if="item.video&&item.video.filePath" @click="watchVideo(item)">观看视频 ></a>
-                <a @click="shopLink(item)">立即购买 ></a>
-              </div>
-            </div>
-            <div class="img-video">
-              <img v-if="item.files[0]&&item.files[0].filePath" v-lazy="$store.state.aiuSRC+item.files[0].filePath" alt="">
-              <img v-if="item.files[1]&&item.files[1].filePath" v-lazy="$store.state.aiuSRC+item.files[1].filePath" alt="">
-              <img v-if="item.files[2]&&item.files[2].filePath" v-lazy="$store.state.aiuSRC+item.files[2].filePath" alt="">
-              <!-- <audio v-lazy="$store.state.aiuSRC+item.video.filePath"></audio> -->
-            </div>
-          </div>
-          <img class="product-img" v-if="item.backgrounds[0]&&item.backgrounds[0].filePath" v-lazy="$store.state.aiuSRC+item.backgrounds[0].filePath" alt="">
-        </div>
-        <div class="product type2" v-if="item.renderType===2">
-          <div class="product-all">
-            <div class=type2-top>
-              <img v-if="item.files[0]&&item.files[0].filePath" v-lazy="$store.state.aiuSRC+item.files[0].filePath" alt="">
+            <div class="type-top">
               <div class="main">
                 <div class="name">{{item.name}}</div>
                 <div class="desc">{{item.desc}}</div>
@@ -34,44 +14,18 @@
                   <a v-if="item.video&&item.video.filePath" @click="watchVideo(item)">观看视频 ></a>
                   <a @click="shopLink(item)">立即购买 ></a>
                 </div>
-              </div>
             </div>
+              </div>
             <div class="img-video">
-              <img v-if="item.files[1]&&item.files[1].filePath" v-lazy="$store.state.aiuSRC+item.files[1].filePath" alt="">
-              <img v-if="item.files[2]&&item.files[2].filePath" v-lazy="$store.state.aiuSRC+item.files[2].filePath" alt="">
-              <img v-if="item.files[3]&&item.files[3].filePath" v-lazy="$store.state.aiuSRC+item.files[3].filePath" alt="">
+              <img v-if="item.files[0]&&item.files[0].filePath" v-lazy="$store.state.aiuSRC+item.files[0].filePath" alt="">
             </div>
           </div>
           <img class="product-img" v-if="item.backgrounds[0]&&item.backgrounds[0].filePath" v-lazy="$store.state.aiuSRC+item.backgrounds[0].filePath" alt="">
         </div>
 
-        <div class="product type3" v-if="item.renderType===3">
+        <div class="product type2" v-if="(index+1)%4===1||(index+1)%4===2">
           <div class="product-all">
-            <div class="contain">
-              <div class="main">
-                <div class="name">{{item.name}}</div>
-                <div class="desc">{{item.desc}}</div>
-                <div class="link">
-                  <a v-if="item.video&&item.video.filePath" @click="watchVideo(item)">观看视频 ></a>
-                  <a @click="shopLink(item)">立即购买 ></a>
-                </div>
-              </div>
-              <div class="img">
-                <img v-if="item.files[0]&&item.files[0].filePath" v-lazy="$store.state.aiuSRC+item.files[0].filePath" alt="">
-              </div>
-              <div class="img">
-                <img v-if="item.files[1]&&item.files[1].filePath" v-lazy="$store.state.aiuSRC+item.files[1].filePath" alt="">
-              </div>
-            </div>
-            
-          </div>
-          <img class="product-img" v-if="item.backgrounds[0]&&item.backgrounds[0].filePath" v-lazy="$store.state.aiuSRC+item.backgrounds[0].filePath" alt="">
-        </div>
-
-        <div class="product type4" v-if="item.renderType===4">
-          <div class="product-all">
-            <div class=type4-top>
-              <!-- <img v-if="item.files[0]&&item.files[0].filePath" v-lazy="$store.state.aiuSRC+item.files[0].filePath" alt=""> -->
+            <div class=type-top>
               <div class="main">
                 <div class="name">{{item.name}}</div>
                 <div class="desc">{{item.desc}}</div>
@@ -84,12 +38,17 @@
             <div class="img-video">
               <img v-if="item.files[0]&&item.files[0].filePath" v-lazy="$store.state.aiuSRC+item.files[0].filePath" alt="">
               <img v-if="item.files[1]&&item.files[1].filePath" v-lazy="$store.state.aiuSRC+item.files[1].filePath" alt="">
-              <img v-if="item.files[2]&&item.files[2].filePath" v-lazy="$store.state.aiuSRC+item.files[2].filePath" alt="">
             </div>
           </div>
           <img class="product-img" v-if="item.backgrounds[0]&&item.backgrounds[0].filePath" v-lazy="$store.state.aiuSRC+item.backgrounds[0].filePath" alt="">
         </div>
-        
+
+        <div id="four" class="product type3" v-if="(index+1)%4===0">
+          <div class="img-video">
+            <img @click="linkTo(banner)" v-for="(banner,index) in item.files" :key="index" :src="$store.state.aiuSRC+banner.filePath" alt="">
+          </div>
+        </div>
+
       </div>
       <div id="videoPop" v-if="videoModal">
         <div class="box">
@@ -176,10 +135,16 @@
       },
       closeModal(){
         this.videoModal = false
-      }
+      },
+      linkTo(item){
+				console.log('item',item)
+				if(item.remark){
+					window.open(item.remark)
+				}
+			}
     },
     mounted(){
-
+      console.log('productList',this.productList)
     }
   }
 </script>
@@ -192,28 +157,39 @@
   }
   .product{
     position:relative;
-    height:810px;
+    /* height:65vw; */
+    overflow: hidden;
+    
   }
   .product-all{
     position:absolute;
-    background:rgba(0, 0, 0, 0.6);
+    background:rgba(0, 0, 0, 0.2);
     color: #fff;
     width:100%;
     height: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
   }
   .type1 .product-all .main{
-    margin-top:133.5px;
-    padding: 0 157.5px;
+    width:500px;
+    text-align: center;
   }
   .product-all .main .name{
     font-size:27px;
   }
   .type1 .product-all .main .desc{
-    margin-top:20px;
-    font-size: 18px;
+    
+    /* font-size: 18px;
     font-weight: 100;
     width:50%;
-    /* text-indent : 32px; */
+    margin:0 auto;
+    margin-top:20px;
+    letter-spacing: 2px; */
+
+    font-weight: 100;
+    font-size:18px;
+    margin-top:10px;
     letter-spacing: 2px;
   }
   .product-all .main .link{
@@ -221,6 +197,7 @@
     font-weight: 400;
     color: #FE841C;
     display: flex;
+    justify-content: center;
   }
   .product-all .main .link>a{
     margin-left:10px;
@@ -228,35 +205,41 @@
     cursor: pointer;
   }
   .type1 .product-all .main .link{
-    margin-top:40px;
+    margin-top:10px;
+    /* margin-bottom:3vw; */
   }
   .type1 .product-all .main .link>a{
     margin-left:10px;
     margin-right:20px;
   }
   .type1 .product-all .img-video{
-    width:100%;
-    display: flex;
+    width:97vw;
+    margin:0 1.5vw;
+    margin-bottom:1vw;
+    height:48vw;
+    
+    /* display: flex;
     justify-content: space-between;
     padding: 0 157.5px;
     box-sizing: border-box;
     position: absolute;
-    bottom:80px;
+    bottom:80px; */
   }
   .type1 .product-all .img-video>img,audio{
-    width: 345px;
-    height:193.5px;
+    width: 100%;
+    height:100%;
+    border-radius: 1vw;
     /* margin-right: 0 210px; */
   }
-  .type2 .type2-top{
+  .type-top{
     display: flex;
-    justify-content: space-between;
+    justify-content: center;
     position:relative;
     
-    padding: 50px 157.5px;
+    padding: 3vw 10vw;
     color:#fff;
   }
-  .type2 .product-all .type2-top>img{
+  .type2 .product-all .type-top>img{
     width: 442px;
     height:352px;
   }
@@ -267,106 +250,50 @@
   .type2 .product-all .main .desc{
     font-weight: 100;
     font-size:18px;
-    margin-top:20px;
+    margin-top:10px;
     /* text-indent : 32px; */
     letter-spacing: 2px;
+    
   } 
+  .desc{
+    overflow: hidden;
+    text-overflow: ellipsis;
+    display: -webkit-box;
+    -webkit-line-clamp: 2;
+    -webkit-box-orient: vertical;
+  }
   .type2 .product-all .main .link{
     justify-content:center;
-    margin-top:40px;
+    margin-top:10px;
   }
   .type2 .img-video{
     width:100%;
     display: flex;
     justify-content: space-between;
     align-items:center;
-    padding: 0 157.5px;
+    padding: 0 1.5vw;
     box-sizing: border-box;
+    margin-bottom:1.5rem;
   }
   .type2 .img-video>img,audio{
-    width: 310.5px;
-    height:310.5px;
-    border-radius: 155.25px;
-  }
-  .type3 .contain{
-    position:absolute;
-    right:80px;
-    bottom:30.75px;
-    color:#fff;
-  }
-  
-  .type3 .product-all .img>img{
-    margin-bottom:28.5px;
-    width: 547.5px;
-    height:195px;
-  }
-  .type3 .product-all .main{
-    margin-bottom:42px;
-    width: 547.4px;
-    text-align: center;
-  }
-  .type3 .product-all .main .desc{
-    font-size: 18px;
-    font-weight: 100;
-    margin-top:10px;
-    /* text-indent : 32px; */
-    letter-spacing: 2px
-  }
-  .type3 .product-all .main .link{
-    margin-top:10px;
-    justify-content:center;
-  }
-  .type3 .product-all .main .link>a{
-    margin-left:20px;
-    margin-right:20px;
-  }
-  .type4 .type4-top{
-    display: flex;
-    justify-content: center;
-    position:relative;
-    
-    padding: 100px 157.5px;
-    color:#fff;
-  }
-  .type4 .product-all .type4-top>img{
-    width: 442px;
-    height:352px;
-  }
-  .type4 .product-all .main{
-    width:500px;
-    text-align: center;
-  }
-  .type4 .product-all .main .desc{
-    font-weight: 100;
-    font-size:18px;
-    margin-top:20px;
-    /* text-indent : 32px; */
-    letter-spacing: 2px;
-  } 
-  .type4 .product-all .main .link{
-    justify-content:center;
-    margin-top:40px;
-  }
-  .type4 .img-video{
-    width:100%;
-    display: flex;
-    justify-content: space-between;
-    align-items:center;
-    padding: 0 157.5px;
-    box-sizing: border-box;
-  }
-  .type4 .img-video>img,audio{
-    width: 310.5px;
-    height:310.5px;
-    /* border-radius: 155.25px; */
+    width: 48vw;
+    height:48vw;
+    border-radius: 1vw;
   }
   .product-img{
-    /* position:absolute; */
-    
     width:100%;
-    height: 810px;
+    height: 65vw;
   }
-
+  .type3 .img-video{
+    display: flex;
+    flex-wrap:wrap;
+    justify-content: space-between;
+  }
+  .type3 .img-video>img{
+    width: 49.5vw;
+    height:42.5vw;
+    margin-top:1vw;
+  }
   .title {
     font-family: "Quicksand", "Source Sans Pro", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif; /* 1 */
     display: block;

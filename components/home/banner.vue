@@ -4,7 +4,7 @@
 			<!-- 有传参进来 -->
 			<div v-if="banner.length>0" class="swiper-wrapper">
 				<div class="swiper-slide" v-for="(banner,index) in banner" :key="index">
-					<img v-if="banner.filePath" :src="$store.state.aiuSRC+banner.filePath">
+					<img @click="linkTo(banner)" v-if="banner.filePath" :src="$store.state.aiuSRC+banner.filePath">
 				</div>
 			</div>
 			<!-- 无传参，用本地 -->
@@ -76,6 +76,12 @@
 			console.log('banner',this.banner)
 		},
 		methods: {
+			linkTo(item){
+				console.log('item',item)
+				if(item.remark){
+					window.open(item.remark)
+				}
+			}
 		}
 	}
 </script>
@@ -85,11 +91,12 @@
 	    position:  relative;
 	    overflow:  hidden; 
 	    width:  100%;
-	    height:  768px;
+		height: 50vw;
 	}
 	.swiper-slide>img{
 		width: 100%;
-    	height: 768px;
+		height: 50vw;
+		border: none;
 	}
 	
 	

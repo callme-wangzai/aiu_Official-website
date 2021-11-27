@@ -74,13 +74,12 @@
 				</div>
 				<div class="footer-bottom">
 					<p>Copyright © 2021 深圳市爱柚数字智能有限公司</p>
-					<p>粤ICP备2021129996号</p>
+					<p class="link" @click="linkToWeb">粤ICP备2021129996号</p>
 				</div>
 			</div>
 		</div>
 	</footer>
 </template>
-
 <style scoped>
 	div#index-footer {
 	    width:  100%;
@@ -301,6 +300,9 @@
 	.footer-bottom p a:hover {
 		color: #f9f9fa;
 	}
+	.link{
+		cursor: pointer;
+	}
 </style>
 
 <script>
@@ -313,6 +315,12 @@
 		computed: {
 			...mapState(['headProdNav','productList','indexLinksData'])
 		},
+		methods:{
+
+			linkToWeb(){
+				window.open('https://beian.miit.gov.cn/')
+			}
+		}
 		// mounted (){
 		// 	//判断是否为首页，首页则改变友情链接控制字段，只在首页显示
 		// 	let that = this

@@ -6,8 +6,9 @@ body{
     background:#fff;
     color:#000;
     font-size:14px;
-    font-family: 'Microsoft yahei',Verdana, Arial, Helvetica, sans-serif;
+    font-family:PingFangSC-Regular, sans-serif,'Microsoft yahei',Verdana, Arial, Helvetica, sans-serif;
 }
+img{ display: block}
 td,th,caption {
     font-size:14px;
 }

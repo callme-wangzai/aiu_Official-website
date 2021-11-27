@@ -1,6 +1,6 @@
 <template>
 	<div>
-         <VBanner :banner="item.carouselFigure" v-for="(item,index) in productList" :key="index"></VBanner>
+         <VBanner :id="'product_'+index" :banner="item.carouselFigure" v-for="(item,index) in productList" :key="index"></VBanner>
     </div>
 </template>
 

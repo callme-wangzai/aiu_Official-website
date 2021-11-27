@@ -3,10 +3,12 @@
 		<BBanner :appList="appList"/>
 
 		<div class="common-logo">
-			<img class="h-t-logo" src="~/assets/images/index/logo_white.jpg" alt="爱柚">
-			<img class="h-t-logo logo-r" src="~/assets/images/index/logo_white2.png" alt="爱柚">
+			
+			<!-- <img class="h-t-logo" src="~/assets/images/index/logo_white.jpg" alt="爱柚">
+			<img class="h-t-logo logo-r" src="~/assets/images/index/logo_white2.png" alt="爱柚"> -->
 		</div>
-
+		<div class="course-title">课程列表</div>
+		<div class="course-des">3分钟开启，瘦身时间轻松挤</div>
 		<div class="course-list" v-swiper:mySwiper="swiperOption">
 			<!-- 有传参进来 -->
 			<div v-if="courseList.length>0" class="swiper-wrapper">
@@ -14,12 +16,6 @@
 					<img v-if="banner.filePath" :src="$store.state.aiuSRC+banner.filePath">
 				</div>
 			</div>
-			<!-- 无传参，用本地 -->
-			<!-- <div v-else class="swiper-wrapper">
-				<div class="swiper-slide" v-for="(banner,index) in swiperData" :key="index">
-					<img :src="banner.imgUrl">
-				</div>
-			</div> -->
 			<div class="swiper-pagination"></div>
 			<div class="swiper-button-prev swiper-button-white"></div>
 			<div class="swiper-button-next swiper-button-white"></div>
@@ -52,7 +48,7 @@
 						prevEl: ".swiper-button-prev"
 					},
 					slidesPerView : 3,
-					spaceBetween : 20,
+					spaceBetween : 10,
 				}
 			}
 		},
@@ -87,8 +83,11 @@
 </script>
 
 <style scoped>
+body{
+	background: #000;
+}
 	.container{
-
+		margin-top:80px;
 	}
 	.common-logo{
 		/* height:300px; */
@@ -104,10 +103,22 @@
 	.logo-r{
 		float: right;
 	}
+	.course-title{
+		font-size: 30px;
+		color: #fff;
+		text-align: center;
+		margin-top: 30px;
+	}
+	.course-des{
+		font-size: 14px;
+		color: #fff;
+		text-align: center;
+		margin-top: 5px;
+	}
 	.course-list{
 		width:100%;
-		overflow-x: auto;
-		margin:20px 0px;
+		/* overflow-x: auto; */
+		margin:10px 0px;
 	}
 	.course{
 		width:446px;
@@ -117,7 +128,8 @@
 	}
 	.course>img{
 		width:100%;
-		height:100%
+		height:100%;
+		border-radius:10px;
 	}
 	.intelligent-data>img{
 		width: 100%;
